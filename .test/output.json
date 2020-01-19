@@ -1,0 +1,749 @@
+{
+  "log": [
+    "✔ 5 tests run, all passed (811ms)\n",
+    "Testing in region en-US, language default out of [\"default\",\"es-mx\"]",
+    "✔ test: happy path\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM\n     ◖----------------◗ \"Locating victoria, victoria esta en casa Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria\n     ! Location: casa\n     ! Response for Alexa: victoria esta en casa\n8.  ❢   LaunchRequest     @ 3:03:15 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM\n     ◖----------------◗ \"Locating victoria, victoria esta en casa Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria\n     ! Location: casa\n     ! Response for Alexa: victoria esta en casa\n12.  ❢   LaunchRequest     @ 3:05:25 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM\n     ◖----------------◗ \"Locating regina, regina esta en london Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina\n     ! Location: london\n     ! Response for Alexa: regina esta en london",
+    "\n",
+    "✔ test: asking for help\nsetting region to en-US\n21.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n23.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM\n     ◖----------------◗ \"Just tell me the name of the person you want to find\" ... NO REPROMPT\n24.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM\n     ◖----------------◗ \"Locating regina, regina esta en london Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina\n     ! Location: london\n     ! Response for Alexa: regina esta en london",
+    "\n",
+    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Sunday\n\n  ✔ utils.test.js 'Web Service'\n  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina\n  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina\n\n  ✔ utils.test.js 'Web Service'\n  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria\n  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria\n"
+  ],
+  "cards": [],
+  "directives": [],
+  "raw": [
+    {
+      "ref": "3.  ❢   LaunchRequest     @ 3:01:05 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": true
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "LaunchRequest",
+          "requestId": "litexaRequestId.0711e830-df99-4640-bfc6-3f4948a324c8",
+          "timestamp": "2017-10-01T13:01:05.000Z",
+          "locale": "default"
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "waitForName",
+        "__settings": {
+          "resetOnLaunch": true
+        }
+      },
+      "trace": [
+        "launch",
+        "waitForName"
+      ]
+    },
+    {
+      "ref": "4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.30d954b5-cf8a-4d79-9ac4-290f96936c9a",
+          "timestamp": "2017-10-01T13:02:10.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "FIND_NAME",
+            "slots": {
+              "name": {
+                "name": "name",
+                "value": "victoria"
+              }
+            }
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Locating victoria, victoria esta en casa Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "waitForName:FIND_NAME",
+        "goodbye"
+      ]
+    },
+    {
+      "ref": "8.  ❢   LaunchRequest     @ 3:03:15 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": true
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "LaunchRequest",
+          "requestId": "litexaRequestId.b78b09e8-0b72-47a5-a17b-2d05101a3d7b",
+          "timestamp": "2017-10-01T13:03:15.000Z",
+          "locale": "default"
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Do you want me to locate victoria?.</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForRelocate",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "launch",
+        "askForRelocate"
+      ]
+    },
+    {
+      "ref": "9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.070e504d-dc4e-4328-a807-8c1a6383e96a",
+          "timestamp": "2017-10-01T13:04:20.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.YesIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Locating victoria, victoria esta en casa Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "askForRelocate:AMAZON.YesIntent",
+        "goodbye"
+      ]
+    },
+    {
+      "ref": "12.  ❢   LaunchRequest     @ 3:05:25 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": true
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "LaunchRequest",
+          "requestId": "litexaRequestId.f3b2703a-c577-4e77-b636-c4d8ee28c653",
+          "timestamp": "2017-10-01T13:05:25.000Z",
+          "locale": "default"
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Do you want me to locate victoria?.</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForRelocate",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "launch",
+        "askForRelocate"
+      ]
+    },
+    {
+      "ref": "13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.0d5fa542-f42b-4444-8212-074092233c49",
+          "timestamp": "2017-10-01T13:06:30.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "playBehavior": "REPLACE_ALL"
+          },
+          "reprompt": {
+            "outputSpeech": {
+              "type": "SSML",
+              "ssml": "<speak>Just tell me a name</speak>"
+            }
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "waitForName",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "askForRelocate:AMAZON.NoIntent",
+        "waitForName"
+      ]
+    },
+    {
+      "ref": "14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.5a5e4681-9ccf-4fb4-a717-fb2e9dffb283",
+          "timestamp": "2017-10-01T13:07:35.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "FIND_NAME",
+            "slots": {
+              "name": {
+                "name": "name",
+                "value": "regina"
+              }
+            }
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Locating regina, regina esta en london Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "regina"
+      },
+      "trace": [
+        "waitForName:FIND_NAME",
+        "goodbye"
+      ]
+    },
+    {
+      "ref": "setting region to en-US",
+      "request": {},
+      "response": {},
+      "db": {}
+    },
+    {
+      "ref": "21.  ❢   LaunchRequest     @ 3:01:05 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": true
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "LaunchRequest",
+          "requestId": "litexaRequestId.13a9bd8a-06c2-4ae8-8012-06a37bcad586",
+          "timestamp": "2017-10-01T13:01:05.000Z",
+          "locale": "en-US"
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "waitForName",
+        "__settings": {
+          "resetOnLaunch": true
+        }
+      },
+      "trace": [
+        "launch",
+        "waitForName"
+      ]
+    },
+    {
+      "ref": "23.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.fc05d80e-1bed-4c77-9ecd-98fc76ca0ba4",
+          "timestamp": "2017-10-01T13:02:10.000Z",
+          "locale": "en-US",
+          "intent": {
+            "name": "AMAZON.HelpIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Just tell me the name of the person you want to find</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "waitForName",
+        "__settings": {
+          "resetOnLaunch": true
+        }
+      },
+      "trace": [
+        "waitForName:AMAZON.HelpIntent",
+        "waitForName"
+      ]
+    },
+    {
+      "ref": "24.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.3afe9a37-aa5a-4b2c-ab47-eba8c011f4c7",
+          "timestamp": "2017-10-01T13:03:15.000Z",
+          "locale": "en-US",
+          "intent": {
+            "name": "FIND_NAME",
+            "slots": {
+              "name": {
+                "name": "name",
+                "value": "regina"
+              }
+            }
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Locating regina, regina esta en london Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "regina"
+      },
+      "trace": [
+        "waitForName:FIND_NAME",
+        "goodbye"
+      ]
+    }
+  ],
+  "summary": "✔ 5 tests run, all passed (811ms)\n",
+  "tallies": {
+    "successes": 5,
+    "fails": 0
+  },
+  "success": true
+}

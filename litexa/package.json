@@ -1,0 +1,15 @@
+{
+  "name": "burrowClockSkill",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "clean": "npx rimraf ./node_modules && npm install",
+    "deploy": "npm run clean && litexa deploy"
+  },
+  "dependencies": {
+    "burrowClockSkill-lib": "file:../lib",
+    "request": "^2.88.0"
+  },
+  "author": "Amazon",
+  "license": "ISC"
+}

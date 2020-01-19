@@ -1,0 +1,13 @@
+{
+  "timestamps": {
+    "copiedNodeModules": 1579472072367,
+    "ensuredDynamoTable": 1579461061172,
+    "ensureIAMRole-litexa_handler_lambda": 1579461063726,
+    "lambdaPermissionsChecked-release-0": 1579461068238,
+    "ensuredCloudwatchLogGroup": 1579461068822,
+    "lambdaUpdated": 1579472076944
+  },
+  "hashes": {
+    "lambdaSHA256": "OdTscdBV5dRyGOsvhZm5RZylqjbU1sdoUBbjd3rP0zA="
+  }
+}

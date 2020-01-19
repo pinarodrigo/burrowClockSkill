@@ -1,0 +1,51 @@
+# start with a launch state
+launch
+  # greet the user, with their nombre if we have it
+  if @name
+    say "¿Quieres que localice a @name?."
+    -> askForRelocate
+  else 
+    say "¿A quién quieres que localice?"
+  # move on to the askForRelocate state
+    -> waitForName
+
+askForRelocate
+  when AMAZON.YesIntent
+    say "Localizando a @name, {callLocalizar(@name)}"
+    -> goodbye
+
+  when AMAZON.NoIntent
+    # add this question to our next response
+    say "¿A quién quieres que localice?"
+    # add an automatic re-prompt, in case the user says nothing
+    reprompt "Solo dime un nombre"
+    -> waitForName
+
+waitForName
+  # do nothing when we start this state, and go nowhere; this ends the handler,
+  # sends our response, and opens the microphone to listen
+
+  when "encuentra a $name"
+    or "localiza a $name"
+    or "donde esta $name"
+    or "a $name"
+    with $name = AMAZON.FirstName
+    # if user answers with a name from our name list
+
+    # save the name in the permanent database
+    @name = $name
+    say "Localizando a @name, {callLocalizar($name)}"
+    -> goodbye
+
+  when AMAZON.HelpIntent
+    say "Solo dime el nombre de la persona que quieres localizar"
+    -> waitForName
+
+  otherwise
+    say "¿Quieres que localice a @name?."
+    -> askForRelocate
+
+goodbye
+  say "¡Hasta luego!"
+  END
+

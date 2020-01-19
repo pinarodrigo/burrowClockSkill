@@ -1,0 +1,26 @@
+TEST "happy path"
+
+  launch 
+  user: "locate victoria"
+  @name == "victoria"
+  END
+
+  launch 
+  user: AMAZON.YesIntent
+  END
+
+  launch 
+  user: AMAZON.NoIntent
+  user: "find regina"
+  @name == "regina"
+  END
+
+
+TEST "asking for help"
+  setRegion en-US
+  launch 
+  alexa: waitForName
+  user: AMAZON.HelpIntent
+  user: "locate regina"
+  END
+

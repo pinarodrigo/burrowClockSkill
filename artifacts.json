@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "development": {
+      "versions": [
+        {
+          "lastDeployment": {
+            "date": "1/19/2020, 11:14:31 PM",
+            "deploymentTypes": {
+              "lambda": true,
+              "assets": true,
+              "model": true,
+              "manifest": true
+            },
+            "git": "fatal: not a git repository (or any of the parent directories): .git\n",
+            "coreVersion": "0.3.1"
+          },
+          "assets-root": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/",
+          "deployedIconAssets": {
+            "default": {
+              "icon-108.png": {
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+                "md5": "661e635ca0aabc8f51aa39af9edf69cc"
+              },
+              "icon-512.png": {
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png",
+                "md5": "300d90c2d2294ee39f4dce26c5618ad1"
+              }
+            },
+            "es-MX": {
+              "icon-108.png": {
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-108.png",
+                "md5": "661e635ca0aabc8f51aa39af9edf69cc"
+              },
+              "icon-512.png": {
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-512.png",
+                "md5": "300d90c2d2294ee39f4dce26c5618ad1"
+              }
+            }
+          },
+          "dynamoDBARN": "arn:aws:dynamodb:us-east-1:540845252871:table/burrowClockSkill_development_litexa_handler_state",
+          "iamRole-litexa_handler_lambda": "arn:aws:iam::540845252871:role/litexa_handler_lambda",
+          "lambdaARN": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0",
+          "skillId": "amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002",
+          "skill-model-etag-en-US": "71ccec3d3735524277b265e551f8b4ff",
+          "skill-manifest-assets-md5": "661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1",
+          "skill-model-etag-es-MX": "aab3b48f69347ce27757e3f5ec5757da"
+        }
+      ]
+    }
+  },
+  "globals": {
+    "last-generated": 1578834265811
+  }
+}

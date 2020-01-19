@@ -1,0 +1,4 @@
+--recursive
+--watch-extensions js
+--full-trace
+

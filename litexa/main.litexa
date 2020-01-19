@@ -1,0 +1,53 @@
+# start with a launch state
+launch
+  # greet the user, with their name if we have it
+  if @name
+    say "Do you want me to locate @name?."
+    -> askForRelocate
+  else 
+    say "Whom do you want me to locate?"
+  # move on to the wait for name state
+    -> waitForName
+
+askForRelocate
+  when AMAZON.YesIntent
+    say "Locating @name, {callLocalizar(@name)}"
+    -> goodbye
+
+  when AMAZON.NoIntent
+    # add this question to our next response
+    say "Whom do you want me to locate?"
+    # add an automatic re-prompt, in case the user says nothing
+    reprompt "Just tell me a name"
+    -> waitForName
+
+waitForName
+  # do nothing when we start this state, and go nowhere; this ends the handler,
+  # sends our response, and opens the microphone to listen
+
+  when "find $name"
+    or "locate $name"
+    or "where is $name"
+    or "$name"
+    with $name = AMAZON.FirstName
+    # if user answers with a name from our name list
+
+    # save the name in the permanent database
+    @name = $name
+    say "Locating @name, {callLocalizar($name)}"
+    -> goodbye
+
+  when AMAZON.HelpIntent
+    say "Just tell me the name of the person you want to find"
+    # loop back to waiting for a name
+    -> waitForName
+
+  otherwise
+    say "Do you want me to find @name?."
+    # loop back to asking for a name
+    -> askForRelocate
+
+goodbye
+  say "Bye!"
+  END
+
