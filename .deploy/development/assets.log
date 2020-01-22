@@ -1,9 +1,9 @@
-[assets] +564ms all asset conversion complete
+[assets] +428ms all asset conversion complete
 [assets] +1ms deploying assets
 [assets] +0ms loaded AWS profile default
-[assets] +679ms found S3 bucket litexa-skills
+[assets] +901ms found S3 bucket litexa-skills
 [assets] +0ms scanning assets, preparing hashes
-[assets] +1ms scanned 4 assets in project
+[assets] +3ms scanned 4 assets in project
 [assets] +0ms fetching S3 object metadata [0-1000]
-[assets] +613ms 0 assets need uploading
-[assets] +0ms asset deployment complete in 1293ms
+[assets] +741ms 0 assets need uploading
+[assets] +0ms asset deployment complete in 1645ms

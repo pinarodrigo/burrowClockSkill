@@ -15,9 +15,20 @@ TEST "happy path"
   @name == "regina"
   END
 
+  launch 
+  user: AMAZON.NoIntent
+  user: "find viviana"
+  @name == "viviana"
+  END
+
+  launch 
+  user: AMAZON.NoIntent
+  user: "find vivianar"
+  @name == "vivianar"
+  END
+
 
 TEST "asking for help"
-  setRegion en-US
   launch 
   alexa: waitForName
   user: AMAZON.HelpIntent

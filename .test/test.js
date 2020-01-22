@@ -1858,7 +1858,7 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
       break;
     }
     case 'AMAZON.YesIntent': {
-      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.db.read('name'))) ) );
+      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.db.read('name'))) ) + "." );
       context.nextState = 'goodbye';
       break;
     }
@@ -1886,7 +1886,7 @@ processIntents.waitForName = async function(context, runOtherwise) {
     }
     case 'FIND_NAME': {
       context.db.write('name', context.slots.name);
-      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.slots.name)) ) );
+      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.slots.name)) ) + "." );
       context.nextState = 'goodbye';
       break;
     }
@@ -1995,7 +1995,7 @@ enterState.askForRelocate = async function(context) {
 processIntents.askForRelocate = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'AMAZON.YesIntent': {
-      context.say.push( "Localizando a " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.db.read('name'))) ) );
+      context.say.push( "Localizando a " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.db.read('name'))) ) + "." );
       context.nextState = 'goodbye';
       break;
     }
@@ -2017,7 +2017,7 @@ processIntents.waitForName = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'ENCUENTRA_A_NAME': {
       context.db.write('name', context.slots.name);
-      context.say.push( "Localizando a " + escapeSpeech( context.slots.name ) + ", " + escapeSpeech( (await callLocalizar('$name')) ) );
+      context.say.push( "Localizando a " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (await callLocalizar(context.slots.name)) ) + "." );
       context.nextState = 'goodbye';
       break;
     }

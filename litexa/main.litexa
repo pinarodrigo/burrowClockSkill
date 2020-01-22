@@ -11,7 +11,7 @@ launch
 
 askForRelocate
   when AMAZON.YesIntent
-    say "Locating @name, {callLocalizar(@name)}"
+    say "Locating @name, {callLocalizar(@name)}."
     -> goodbye
 
   when AMAZON.NoIntent
@@ -34,7 +34,7 @@ waitForName
 
     # save the name in the permanent database
     @name = $name
-    say "Locating @name, {callLocalizar($name)}"
+    say "Locating @name, {callLocalizar($name)}."
     -> goodbye
 
   when AMAZON.HelpIntent

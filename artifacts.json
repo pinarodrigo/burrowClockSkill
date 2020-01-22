@@ -4,14 +4,40 @@
       "versions": [
         {
           "lastDeployment": {
-            "date": "1/19/2020, 11:14:31 PM",
+            "date": "1/20/2020, 10:17:33 PM",
             "deploymentTypes": {
               "lambda": true,
               "assets": true,
               "model": true,
               "manifest": true
             },
-            "git": "fatal: not a git repository (or any of the parent directories): .git\n",
+            "git": {
+              "currentCommitHash": "9d77e37d5b0bbf361cc3653221135a1e7c4d3b0b",
+              "currentCommitComment": [
+                "initial commit"
+              ],
+              "uncommittedChanges": [
+                "[modified] .deploy/development/assets.log",
+                "[modified] .deploy/development/lambda.log",
+                "[modified] .deploy/development/lambda.zip",
+                "[modified] .deploy/development/lambda/index.js",
+                "[modified] .deploy/development/local-cache.json",
+                "[modified] .deploy/development/manifest.log",
+                "[modified] .deploy/development/model-es-MX.json",
+                "[modified] .deploy/development/zip.out.log",
+                "[modified] .test/lambda.js",
+                "[modified] .test/output.json",
+                "[modified] .test/output.log",
+                "[modified] .test/project-config.json",
+                "[modified] .test/test.js",
+                "[modified] artifacts.json",
+                "[modified] lib/utils.js",
+                "[modified] litexa/languages/es-MX/main.litexa",
+                "[modified] litexa/main.litexa",
+                "[modified] litexa/main.test.litexa",
+                "[modified] skill.js"
+              ]
+            },
             "coreVersion": "0.3.1"
           },
           "assets-root": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/",
@@ -43,7 +69,7 @@
           "skillId": "amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002",
           "skill-model-etag-en-US": "71ccec3d3735524277b265e551f8b4ff",
           "skill-manifest-assets-md5": "661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1",
-          "skill-model-etag-es-MX": "aab3b48f69347ce27757e3f5ec5757da"
+          "skill-model-etag-es-MX": "386ab77bf390f169cfd2286af0341785"
         }
       ]
     }

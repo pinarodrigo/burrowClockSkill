@@ -33,7 +33,7 @@ module.exports = {
                 },
                 'es-MX': {
                     name: 'burrowClockSkill',
-                    invocation: 'encuentra familia',
+                    invocation: 'localiza niñas',
                     summary: 'Skill para localizar a las piñas',
                     description: 'Skill para localizar a las piñas',
                     examplePhrases: [

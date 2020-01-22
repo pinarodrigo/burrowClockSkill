@@ -1,59 +1,56 @@
-1/19/2020, 8:26:16 PM
-✔ 5 tests run, all passed (811ms)
+1/20/2020, 10:17:23 PM
+✔ 5 tests run, all passed (833ms)
 
 Testing in region en-US, language default out of ["default","es-mx"]
 ✔ test: happy path
 3.  ❢   LaunchRequest     @ 3:01:05 PM
      ◖----------------◗ "Whom do you want me to locate?" ... NO REPROMPT
 4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM
-     ◖----------------◗ "Locating victoria, victoria esta en casa Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating victoria, victoria está en casa. Bye!" ... NO REPROMPT
   ◣  Voice session ended
-     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria
-     ! Location: casa
-     ! Response for Alexa: victoria esta en casa
 8.  ❢   LaunchRequest     @ 3:03:15 PM
      ◖----------------◗ "Do you want me to locate victoria?." ... NO REPROMPT
 9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM
-     ◖----------------◗ "Locating victoria, victoria esta en casa Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating victoria, victoria está en casa. Bye!" ... NO REPROMPT
   ◣  Voice session ended
-     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria
-     ! Location: casa
-     ! Response for Alexa: victoria esta en casa
 12.  ❢   LaunchRequest     @ 3:05:25 PM
      ◖----------------◗ "Do you want me to locate victoria?." ... NO REPROMPT
 13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM
      ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
 14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM
-     ◖----------------◗ "Locating regina, regina esta en london Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating regina, regina está en london. Bye!" ... NO REPROMPT
   ◣  Voice session ended
-     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina
-     ! Location: london
-     ! Response for Alexa: regina esta en london
+18.  ❢   LaunchRequest     @ 3:08:40 PM
+     ◖----------------◗ "Do you want me to locate regina?." ... NO REPROMPT
+19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM
+     ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
+20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM
+     ◖----------------◗ "Locating viviana, viviana está a 4187 metros. Bye!" ... NO REPROMPT
+  ◣  Voice session ended
+24.  ❢   LaunchRequest     @ 3:11:55 PM
+     ◖----------------◗ "Do you want me to locate viviana?." ... NO REPROMPT
+25.  ❢  AMAZON.NoIntent    @ 3:13:00 PM
+     ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
+26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM
+     ◖----------------◗ "Locating vivianar, No pude localizar a vivianar. Bye!" ... NO REPROMPT
+  ◣  Voice session ended
 
 
 ✔ test: asking for help
-setting region to en-US
-21.  ❢   LaunchRequest     @ 3:01:05 PM
+32.  ❢   LaunchRequest     @ 3:01:05 PM
      ◖----------------◗ "Whom do you want me to locate?" ... NO REPROMPT
-23.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM
+34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM
      ◖----------------◗ "Just tell me the name of the person you want to find" ... NO REPROMPT
-24.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM
-     ◖----------------◗ "Locating regina, regina esta en london Bye!" ... NO REPROMPT
+35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM
+     ◖----------------◗ "Locating regina, regina está en london. Bye!" ... NO REPROMPT
   ◣  Voice session ended
-     ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina
-     ! Location: london
-     ! Response for Alexa: regina esta en london
 
 
 ✔ utils.test.js, 3 tests passed
   ✔ utils.test.js 'Utils'
   c! the arguments are [ 1, 2, 3 ]
-  t! today is Sunday
+  t! today is Monday
 
   ✔ utils.test.js 'Web Service'
-  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina
-  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/regina
 
   ✔ utils.test.js 'Web Service'
-  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria
-  c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/locate/victoria
