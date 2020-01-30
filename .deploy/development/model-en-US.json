@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "pineapple locator",
+      "invocationName": "family locator",
       "intents": [
         {
           "name": "AMAZON.StopIntent",

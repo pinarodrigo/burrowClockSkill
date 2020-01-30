@@ -1,14 +1,69 @@
 {
   "log": [
-    "✔ 5 tests run, all passed (833ms)\n",
+    "✔ 5 tests run, all passed (829ms)\n",
     "Testing in region en-US, language default out of [\"default\",\"es-mx\"]",
-    "✔ test: happy path\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n8.  ❢   LaunchRequest     @ 3:03:15 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n12.  ❢   LaunchRequest     @ 3:05:25 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM\n     ◖----------------◗ \"Locating regina, regina está en london. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n18.  ❢   LaunchRequest     @ 3:08:40 PM\n     ◖----------------◗ \"Do you want me to locate regina?.\" ... NO REPROMPT\n19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM\n     ◖----------------◗ \"Locating viviana, viviana está a 4187 metros. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n24.  ❢   LaunchRequest     @ 3:11:55 PM\n     ◖----------------◗ \"Do you want me to locate viviana?.\" ... NO REPROMPT\n25.  ❢  AMAZON.NoIntent    @ 3:13:00 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM\n     ◖----------------◗ \"Locating vivianar, No pude localizar a vivianar. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended",
+    "✔ test: happy path\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 0] Burrow Clock\n  ◣  Voice session ended\n8.  ❢   LaunchRequest     @ 3:03:15 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 1] Burrow Clock\n  ◣  Voice session ended\n12.  ❢   LaunchRequest     @ 3:05:25 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM\n     ◖----------------◗ \"Locating regina, regina está en salón. Bye!\" ... NO REPROMPT\n                          [CARD 2] Burrow Clock\n  ◣  Voice session ended\n18.  ❢   LaunchRequest     @ 3:08:40 PM\n     ◖----------------◗ \"Do you want me to locate regina?.\" ... NO REPROMPT\n19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM\n     ◖----------------◗ \"Locating viviana, viviana está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 3] Burrow Clock\n  ◣  Voice session ended\n24.  ❢   LaunchRequest     @ 3:11:55 PM\n     ◖----------------◗ \"Do you want me to locate viviana?.\" ... NO REPROMPT\n25.  ❢  AMAZON.NoIntent    @ 3:13:00 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM\n     ◖----------------◗ \"Locating vivianar, No pude localizar a vivianar. Bye!\" ... NO REPROMPT\n                          [CARD 4] Burrow Clock\n  ◣  Voice session ended",
     "\n",
-    "✔ test: asking for help\n32.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM\n     ◖----------------◗ \"Just tell me the name of the person you want to find\" ... NO REPROMPT\n35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM\n     ◖----------------◗ \"Locating regina, regina está en london. Bye!\" ... NO REPROMPT\n  ◣  Voice session ended",
+    "✔ test: asking for help\n32.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM\n     ◖----------------◗ \"Just tell me the name of the person you want to find\" ... NO REPROMPT\n35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM\n     ◖----------------◗ \"Locating regina, regina está en salón. Bye!\" ... NO REPROMPT\n                          [CARD 5] Burrow Clock\n  ◣  Voice session ended",
     "\n",
-    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Monday\n\n  ✔ utils.test.js 'Web Service'\n\n  ✔ utils.test.js 'Web Service'\n"
+    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Thursday\n\n  ✔ utils.test.js 'Web Service'\n\n  ✔ utils.test.js 'Web Service'\n"
   ],
-  "cards": [],
+  "cards": [
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "victoria está en casa",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "victoria está en casa",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "regina está en salón",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "viviana está en casa",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "No pude localizar a vivianar",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "regina está en salón",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    }
+  ],
   "directives": [],
   "raw": [
     {
@@ -44,7 +99,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.044bb4ed-7c68-407f-807c-61bec6524810",
+          "requestId": "litexaRequestId.00c253f7-b8ce-406d-ad70-2ae8867ec4df",
           "timestamp": "2017-10-01T13:01:05.000Z",
           "locale": "default"
         },
@@ -111,7 +166,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.e661063a-a5df-4e8c-8877-811da0f70b29",
+          "requestId": "litexaRequestId.1ed3bf3e-9af3-45e8-b681-1b40dd4f8dcd",
           "timestamp": "2017-10-01T13:02:10.000Z",
           "locale": "default",
           "intent": {
@@ -136,6 +191,15 @@
             "type": "SSML",
             "ssml": "<speak>Locating victoria, victoria está en casa. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "victoria está en casa",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -188,7 +252,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.93794ca6-a0a5-4212-9b20-d6cfdc5d4990",
+          "requestId": "litexaRequestId.f132d683-207f-4543-927b-edef495baa0e",
           "timestamp": "2017-10-01T13:03:15.000Z",
           "locale": "default"
         },
@@ -256,7 +320,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.052de2c5-de39-4b44-8a32-9bef3eb9844d",
+          "requestId": "litexaRequestId.1463fd1c-c1c6-460a-ab77-e36c03f24b1f",
           "timestamp": "2017-10-01T13:04:20.000Z",
           "locale": "default",
           "intent": {
@@ -276,6 +340,15 @@
             "type": "SSML",
             "ssml": "<speak>Locating victoria, victoria está en casa. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "victoria está en casa",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -328,7 +401,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.fe8da338-80b8-44a2-813e-2b43ce8a1625",
+          "requestId": "litexaRequestId.f5487a7b-c536-42f0-9d71-7896834ca75d",
           "timestamp": "2017-10-01T13:05:25.000Z",
           "locale": "default"
         },
@@ -396,7 +469,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.dce29ed2-744b-4bfd-af9e-f29840b7fb7f",
+          "requestId": "litexaRequestId.c37f43b8-6534-4c8c-92ab-2a38534dff60",
           "timestamp": "2017-10-01T13:06:30.000Z",
           "locale": "default",
           "intent": {
@@ -474,7 +547,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.c2d099a8-ce14-40c8-9bd8-1e726f9d0374",
+          "requestId": "litexaRequestId.3395d520-c3a3-47b6-9b77-b42c1e07c583",
           "timestamp": "2017-10-01T13:07:35.000Z",
           "locale": "default",
           "intent": {
@@ -497,8 +570,17 @@
           "shouldEndSession": true,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating regina, regina está en london. Bye!</speak>",
+            "ssml": "<speak>Locating regina, regina está en salón. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "regina está en salón",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -551,7 +633,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.2b7b28fb-3226-4861-9715-47badc55e8ab",
+          "requestId": "litexaRequestId.8bdd4abc-8c81-4841-92a9-f3dfb1e12d0e",
           "timestamp": "2017-10-01T13:08:40.000Z",
           "locale": "default"
         },
@@ -619,7 +701,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.553b43f2-25f8-4063-9128-f83eacf09768",
+          "requestId": "litexaRequestId.9c50c539-6088-44d5-8e97-f4788d4e5e96",
           "timestamp": "2017-10-01T13:09:45.000Z",
           "locale": "default",
           "intent": {
@@ -697,7 +779,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.4f8d7a75-f591-4d11-8e1f-ee4418a1d2f2",
+          "requestId": "litexaRequestId.849ed29a-0346-43b8-b9d5-de02f63cec93",
           "timestamp": "2017-10-01T13:10:50.000Z",
           "locale": "default",
           "intent": {
@@ -720,8 +802,17 @@
           "shouldEndSession": true,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating viviana, viviana está a 4187 metros. Bye!</speak>",
+            "ssml": "<speak>Locating viviana, viviana está en casa. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "viviana está en casa",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -774,7 +865,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.5260389d-8a48-4c88-b038-fe8a2da2b305",
+          "requestId": "litexaRequestId.e87378c3-a2b9-46bb-a681-d007f7f80d38",
           "timestamp": "2017-10-01T13:11:55.000Z",
           "locale": "default"
         },
@@ -842,7 +933,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.529d6569-197b-4eb0-8042-027878a660bf",
+          "requestId": "litexaRequestId.f8ab8965-ebf4-4ec0-b83f-fd7d40e82252",
           "timestamp": "2017-10-01T13:13:00.000Z",
           "locale": "default",
           "intent": {
@@ -920,7 +1011,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.02309344-a62a-4fb1-89a2-2acb0879803c",
+          "requestId": "litexaRequestId.f912f002-8190-4677-977c-13bc3315fcb2",
           "timestamp": "2017-10-01T13:14:05.000Z",
           "locale": "default",
           "intent": {
@@ -945,6 +1036,15 @@
             "type": "SSML",
             "ssml": "<speak>Locating vivianar, No pude localizar a vivianar. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "No pude localizar a vivianar",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -997,7 +1097,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.bbfbc791-2c69-4293-8ffc-c661d2dab4e6",
+          "requestId": "litexaRequestId.e5e1bc45-5e39-4ee5-b284-bc72f5359632",
           "timestamp": "2017-10-01T13:01:05.000Z",
           "locale": "default"
         },
@@ -1064,7 +1164,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.3f2c2d00-f866-468c-b211-97bb8d46f6b8",
+          "requestId": "litexaRequestId.b95c3efa-af84-4bfc-812e-5cee12bd319b",
           "timestamp": "2017-10-01T13:02:10.000Z",
           "locale": "default",
           "intent": {
@@ -1135,7 +1235,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.64e665ed-840b-400c-b7e6-e5f3e926d5ee",
+          "requestId": "litexaRequestId.df147968-cef1-48f2-be8b-72b8cd15da7c",
           "timestamp": "2017-10-01T13:03:15.000Z",
           "locale": "default",
           "intent": {
@@ -1158,8 +1258,17 @@
           "shouldEndSession": true,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating regina, regina está en london. Bye!</speak>",
+            "ssml": "<speak>Locating regina, regina está en salón. Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "regina está en salón",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
           }
         }
       },
@@ -1180,7 +1289,7 @@
       ]
     }
   ],
-  "summary": "✔ 5 tests run, all passed (833ms)\n",
+  "summary": "✔ 5 tests run, all passed (829ms)\n",
   "tallies": {
     "successes": 5,
     "fails": 0

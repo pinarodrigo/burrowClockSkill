@@ -4,7 +4,7 @@
       "versions": [
         {
           "lastDeployment": {
-            "date": "1/20/2020, 10:17:33 PM",
+            "date": "1/30/2020, 11:59:15 AM",
             "deploymentTypes": {
               "lambda": true,
               "assets": true,
@@ -12,9 +12,9 @@
               "manifest": true
             },
             "git": {
-              "currentCommitHash": "9d77e37d5b0bbf361cc3653221135a1e7c4d3b0b",
+              "currentCommitHash": "9091f389b976930a78538d6852db9767c0ba580e",
               "currentCommitComment": [
-                "initial commit"
+                "Adds better distance calculation and pronounciation for alexa"
               ],
               "uncommittedChanges": [
                 "[modified] .deploy/development/assets.log",
@@ -23,18 +23,14 @@
                 "[modified] .deploy/development/lambda/index.js",
                 "[modified] .deploy/development/local-cache.json",
                 "[modified] .deploy/development/manifest.log",
-                "[modified] .deploy/development/model-es-MX.json",
-                "[modified] .deploy/development/zip.out.log",
                 "[modified] .test/lambda.js",
                 "[modified] .test/output.json",
                 "[modified] .test/output.log",
                 "[modified] .test/project-config.json",
                 "[modified] .test/test.js",
                 "[modified] artifacts.json",
-                "[modified] lib/utils.js",
                 "[modified] litexa/languages/es-MX/main.litexa",
                 "[modified] litexa/main.litexa",
-                "[modified] litexa/main.test.litexa",
                 "[modified] skill.js"
               ]
             },
@@ -67,9 +63,9 @@
           "iamRole-litexa_handler_lambda": "arn:aws:iam::540845252871:role/litexa_handler_lambda",
           "lambdaARN": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0",
           "skillId": "amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002",
-          "skill-model-etag-en-US": "71ccec3d3735524277b265e551f8b4ff",
+          "skill-model-etag-en-US": "d83c50e8791bea87dfabf872fca967dd",
           "skill-manifest-assets-md5": "661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1661e635ca0aabc8f51aa39af9edf69cc300d90c2d2294ee39f4dce26c5618ad1",
-          "skill-model-etag-es-MX": "386ab77bf390f169cfd2286af0341785"
+          "skill-model-etag-es-MX": "86fae4117f8c4ba6ee8120d8d0bd3e85"
         }
       ]
     }

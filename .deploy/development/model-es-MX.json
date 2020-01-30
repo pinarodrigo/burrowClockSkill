@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "localiza ni as",
+      "invocationName": "localiza familia",
       "intents": [
         {
           "name": "AMAZON.StopIntent",

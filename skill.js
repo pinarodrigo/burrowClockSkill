@@ -18,7 +18,7 @@ module.exports = {
             locales: {
                 'en-US': {
                     name: 'burrowClockSkill',
-                    invocation: 'pineapple locator',
+                    invocation: 'family locator',
                     summary: 'replace with brief description, no longer than 120 characters',
                     description: 'Longer description, goes to the skill store. Line breaks are supported.',
                     examplePhrases: [
@@ -33,7 +33,7 @@ module.exports = {
                 },
                 'es-MX': {
                     name: 'burrowClockSkill',
-                    invocation: 'localiza niñas',
+                    invocation: 'localiza familia',
                     summary: 'Skill para localizar a las piñas',
                     description: 'Skill para localizar a las piñas',
                     examplePhrases: [

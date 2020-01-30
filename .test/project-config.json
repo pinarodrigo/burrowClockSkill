@@ -87,9 +87,9 @@
     "logPrefix": "[project info] ",
     "_verbose": false,
     "includeRunningTime": true,
-    "lastOutStreamTime": "2020-01-20T21:17:21.679Z",
-    "lastFileTime": "2020-01-20T21:17:21.679Z",
-    "startTime": "2020-01-20T21:17:21.679Z",
+    "lastOutStreamTime": "2020-01-30T10:59:03.963Z",
+    "lastFileTime": "2020-01-30T10:59:03.963Z",
+    "startTime": "2020-01-30T10:59:03.963Z",
     "_canWriteToFileStreamValid": true,
     "_canWriteToFileStream": false
   },
@@ -106,7 +106,8 @@
         "root": "/Users/rpn8fe/playground/burrowClockSkill/litexa/assets",
         "files": [
           "icon-108.png",
-          "icon-512.png"
+          "icon-512.png",
+          "map.png"
         ]
       },
       "code": {

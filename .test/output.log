@@ -1,5 +1,5 @@
-1/20/2020, 10:17:23 PM
-✔ 5 tests run, all passed (833ms)
+1/30/2020, 11:59:05 AM
+✔ 5 tests run, all passed (829ms)
 
 Testing in region en-US, language default out of ["default","es-mx"]
 ✔ test: happy path
@@ -7,25 +7,29 @@ Testing in region en-US, language default out of ["default","es-mx"]
      ◖----------------◗ "Whom do you want me to locate?" ... NO REPROMPT
 4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM
      ◖----------------◗ "Locating victoria, victoria está en casa. Bye!" ... NO REPROMPT
+                          [CARD 0] Burrow Clock
   ◣  Voice session ended
 8.  ❢   LaunchRequest     @ 3:03:15 PM
      ◖----------------◗ "Do you want me to locate victoria?." ... NO REPROMPT
 9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM
      ◖----------------◗ "Locating victoria, victoria está en casa. Bye!" ... NO REPROMPT
+                          [CARD 1] Burrow Clock
   ◣  Voice session ended
 12.  ❢   LaunchRequest     @ 3:05:25 PM
      ◖----------------◗ "Do you want me to locate victoria?." ... NO REPROMPT
 13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM
      ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
 14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM
-     ◖----------------◗ "Locating regina, regina está en london. Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating regina, regina está en salón. Bye!" ... NO REPROMPT
+                          [CARD 2] Burrow Clock
   ◣  Voice session ended
 18.  ❢   LaunchRequest     @ 3:08:40 PM
      ◖----------------◗ "Do you want me to locate regina?." ... NO REPROMPT
 19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM
      ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
 20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM
-     ◖----------------◗ "Locating viviana, viviana está a 4187 metros. Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating viviana, viviana está en casa. Bye!" ... NO REPROMPT
+                          [CARD 3] Burrow Clock
   ◣  Voice session ended
 24.  ❢   LaunchRequest     @ 3:11:55 PM
      ◖----------------◗ "Do you want me to locate viviana?." ... NO REPROMPT
@@ -33,6 +37,7 @@ Testing in region en-US, language default out of ["default","es-mx"]
      ◖----------------◗ "Whom do you want me to locate?" ... "Just tell me a name"
 26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM
      ◖----------------◗ "Locating vivianar, No pude localizar a vivianar. Bye!" ... NO REPROMPT
+                          [CARD 4] Burrow Clock
   ◣  Voice session ended
 
 
@@ -42,14 +47,15 @@ Testing in region en-US, language default out of ["default","es-mx"]
 34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM
      ◖----------------◗ "Just tell me the name of the person you want to find" ... NO REPROMPT
 35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM
-     ◖----------------◗ "Locating regina, regina está en london. Bye!" ... NO REPROMPT
+     ◖----------------◗ "Locating regina, regina está en salón. Bye!" ... NO REPROMPT
+                          [CARD 5] Burrow Clock
   ◣  Voice session ended
 
 
 ✔ utils.test.js, 3 tests passed
   ✔ utils.test.js 'Utils'
   c! the arguments are [ 1, 2, 3 ]
-  t! today is Monday
+  t! today is Thursday
 
   ✔ utils.test.js 'Web Service'
 
