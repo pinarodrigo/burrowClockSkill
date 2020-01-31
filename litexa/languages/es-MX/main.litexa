@@ -14,7 +14,9 @@ askForRelocate
     local speechToText = callLocalizar(@name)
     say "Localizando a @name, {speechToText}."
     card "Burrow Clock", map.png, "{speechToText}" 
-    -> goodbye
+    say "<...1s>"
+    say "¿Quieres localizar a alguien más?"
+    -> askForAnother
 
   when AMAZON.NoIntent
     # add this question to our next response
@@ -22,6 +24,16 @@ askForRelocate
     # add an automatic re-prompt, in case the user says nothing
     reprompt "Solo dime un nombre"
     -> waitForName
+
+askForAnother
+  when AMAZON.YesIntent
+      say "¿A quién quieres que localice?"
+      -> waitForName
+
+  when AMAZON.NoIntent
+    say "ok"
+    say "<...1s>"
+    -> goodbye
 
 waitForName
   # do nothing when we start this state, and go nowhere; this ends the handler,
@@ -39,7 +51,9 @@ waitForName
     local speechToText = callLocalizar(@name)
     say "Localizando a @name, {speechToText}."
     card "Burrow Clock", map.png, "{speechToText}" 
-    -> goodbye
+    say "<...1s>"
+    say "¿Quieres localizar a alguien más?"
+    -> askForAnother
 
   when AMAZON.HelpIntent
     say "Solo dime el nombre de la persona que quieres localizar"

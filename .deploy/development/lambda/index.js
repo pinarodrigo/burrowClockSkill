@@ -2088,11 +2088,13 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.nextState = 'goodbye';
+      context.say.push( "<break time='1s'/>" );
+      context.say.push( "Do you want me to find someone else?" );
+      context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "Whom do you want me to locate?" );
+      context.say.push( "Whom do you want me to find?" );
       context.reprompt.push( "Just tell me a name" );
       context.nextState = 'waitForName';
       break;
@@ -2101,6 +2103,31 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
   return true;
 };
 exitState.askForRelocate = async function(context) {
+};
+
+enterState.askForAnother = async function(context) {
+};
+processIntents.askForAnother = async function(context, runOtherwise) {
+  switch( context.intent ) {
+    default: {
+      if ( await processIntents.global(context, true) ) { return true; }
+      break;
+    }
+    case 'AMAZON.YesIntent': {
+      context.say.push( "Whom do you want me to find?" );
+      context.nextState = 'waitForName';
+      break;
+    }
+    case 'AMAZON.NoIntent': {
+      context.say.push( "ok" );
+      context.say.push( "<break time='1s'/>" );
+      context.nextState = 'goodbye';
+      break;
+    }
+  }
+  return true;
+};
+exitState.askForAnother = async function(context) {
 };
 
 enterState.waitForName = async function(context) {
@@ -2125,7 +2152,9 @@ processIntents.waitForName = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.nextState = 'goodbye';
+      context.say.push( "<break time='1s'/>" );
+      context.say.push( "Do you want me to find someone else?" );
+      context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.HelpIntent': {
@@ -2243,7 +2272,9 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.nextState = 'goodbye';
+      context.say.push( "<break time='1s'/>" );
+      context.say.push( "¿Quieres localizar a alguien más?" );
+      context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.NoIntent': {
@@ -2256,6 +2287,27 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
   return true;
 };
 exitState.askForRelocate = async function(context) {
+};
+
+enterState.askForAnother = async function(context) {
+};
+processIntents.askForAnother = async function(context, runOtherwise) {
+  switch( context.intent ) {
+    case 'AMAZON.YesIntent': {
+      context.say.push( "¿A quién quieres que localice?" );
+      context.nextState = 'waitForName';
+      break;
+    }
+    case 'AMAZON.NoIntent': {
+      context.say.push( "ok" );
+      context.say.push( "<break time='1s'/>" );
+      context.nextState = 'goodbye';
+      break;
+    }
+  }
+  return true;
+};
+exitState.askForAnother = async function(context) {
 };
 
 enterState.waitForName = async function(context) {
@@ -2274,7 +2326,9 @@ processIntents.waitForName = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.nextState = 'goodbye';
+      context.say.push( "<break time='1s'/>" );
+      context.say.push( "¿Quieres localizar a alguien más?" );
+      context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.HelpIntent': {

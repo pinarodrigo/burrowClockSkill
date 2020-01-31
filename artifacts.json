@@ -4,7 +4,7 @@
       "versions": [
         {
           "lastDeployment": {
-            "date": "1/30/2020, 11:59:15 AM",
+            "date": "1/31/2020, 5:29:21 PM",
             "deploymentTypes": {
               "lambda": true,
               "assets": true,
@@ -12,9 +12,9 @@
               "manifest": true
             },
             "git": {
-              "currentCommitHash": "9091f389b976930a78538d6852db9767c0ba580e",
+              "currentCommitHash": "db1d93e0bf03545f66225c749d1928c6acb77d05",
               "currentCommitComment": [
-                "Adds better distance calculation and pronounciation for alexa"
+                "Adds Card to Alexa response"
               ],
               "uncommittedChanges": [
                 "[modified] .deploy/development/assets.log",
@@ -23,15 +23,9 @@
                 "[modified] .deploy/development/lambda/index.js",
                 "[modified] .deploy/development/local-cache.json",
                 "[modified] .deploy/development/manifest.log",
-                "[modified] .test/lambda.js",
-                "[modified] .test/output.json",
-                "[modified] .test/output.log",
-                "[modified] .test/project-config.json",
-                "[modified] .test/test.js",
                 "[modified] artifacts.json",
                 "[modified] litexa/languages/es-MX/main.litexa",
-                "[modified] litexa/main.litexa",
-                "[modified] skill.js"
+                "[modified] litexa/main.litexa"
               ]
             },
             "coreVersion": "0.3.1"

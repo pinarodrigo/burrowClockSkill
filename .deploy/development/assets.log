@@ -1,13 +1,9 @@
-[assets] +431ms all asset conversion complete
-[assets] +1ms deploying assets
-[assets] +0ms loaded AWS profile default
-[assets] +644ms found S3 bucket litexa-skills
-[assets] +1ms scanning assets, preparing hashes
+[assets] +433ms all asset conversion complete
+[assets] +0ms deploying assets
+[assets] +1ms loaded AWS profile default
+[assets] +657ms found S3 bucket litexa-skills
+[assets] +0ms scanning assets, preparing hashes
 [assets] +1ms scanned 6 assets in project
 [assets] +0ms fetching S3 object metadata [0-1000]
-[assets] +560ms 2 assets need uploading
-[assets] +0ms uploading map.png -> burrowClockSkill/development/default/map.png [7e70a583]
-[assets] +1ms uploading map.png -> burrowClockSkill/development/es-MX/map.png [7e70a583]
-[assets] +0ms 0 assets remaining in queue
-[assets] +870ms segment uploaded in 870ms
-[assets] +1ms asset deployment complete in 2078ms
+[assets] +575ms 0 assets need uploading
+[assets] +0ms asset deployment complete in 1233ms

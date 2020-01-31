@@ -13,15 +13,27 @@ askForRelocate
   when AMAZON.YesIntent
     local speechToText = callLocalizar(@name)
     say "Locating @name, {speechToText}."
-    card "Burrow Clock", map.png, "{speechToText}"  
-    -> goodbye
+    card "Burrow Clock", map.png, "{speechToText}" 
+    say "<...1s>"
+    say "Do you want me to find someone else?"
+    -> askForAnother
 
   when AMAZON.NoIntent
     # add this question to our next response
-    say "Whom do you want me to locate?"
+    say "Whom do you want me to find?"
     # add an automatic re-prompt, in case the user says nothing
     reprompt "Just tell me a name"
     -> waitForName
+
+askForAnother
+  when AMAZON.YesIntent
+      say "Whom do you want me to find?"
+      -> waitForName
+
+  when AMAZON.NoIntent
+    say "ok"
+    say "<...1s>"
+    -> goodbye
 
 waitForName
   # do nothing when we start this state, and go nowhere; this ends the handler,
@@ -38,8 +50,10 @@ waitForName
     @name = $name
     local speechToText = callLocalizar(@name)
     say "Locating @name, {speechToText}."
-    card "Burrow Clock", map.png, "{speechToText}"  
-    -> goodbye
+    card "Burrow Clock", map.png, "{speechToText}" 
+    say "<...1s>"
+    say "Do you want me to find someone else?"
+    -> askForAnother
 
   when AMAZON.HelpIntent
     say "Just tell me the name of the person you want to find"

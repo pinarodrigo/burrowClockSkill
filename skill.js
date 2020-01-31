@@ -47,6 +47,16 @@ module.exports = {
                 }
             }
         },
+        permissions: [{ "name": "alexa::devices:all:notifications:write" }],
+        events: {
+            "publications": [
+                { "eventName": "AMAZON.OrderStatus.Updated" },
+                { "eventName": "AMAZON.MediaContent.Available" }
+            ],
+            "endpoint": {
+                "uri": "YOUR-AWS-LAMBDA-FUNCTION-ARN"
+            }
+        },
         privacyAndCompliance: {
             allowsPurchases: false,
             usesPersonalInfo: false,
