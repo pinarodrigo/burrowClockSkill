@@ -2263,6 +2263,7 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'AMAZON.YesIntent': {
       let speechToText = await callLocalizar(context.db.read('name'));
+      context.say.push( "<say-as interpret-as='interjection'>pérame.</say-as>" );
       context.say.push( "Localizando a " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + "." );
       context.card = {
         title: "Burrow Clock",
@@ -2272,7 +2273,6 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.say.push( "<break time='1s'/>" );
       context.say.push( "¿Quieres localizar a alguien más?" );
       context.nextState = 'askForAnother';
       break;
@@ -2294,13 +2294,12 @@ enterState.askForAnother = async function(context) {
 processIntents.askForAnother = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'AMAZON.YesIntent': {
-      context.say.push( "¿A quién quieres que localice?" );
+      context.say.push( "<say-as interpret-as='interjection'>perfecto.</say-as>" + " ¿A quién quieres que localice?" );
       context.nextState = 'waitForName';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "ok" );
-      context.say.push( "<break time='1s'/>" );
+      context.say.push( "<say-as interpret-as='interjection'>chido.</say-as>" );
       context.nextState = 'goodbye';
       break;
     }
@@ -2317,6 +2316,7 @@ processIntents.waitForName = async function(context, runOtherwise) {
     case 'ENCUENTRA_A_NAME': {
       context.db.write('name', context.slots.name);
       let speechToText = await callLocalizar(context.db.read('name'));
+      context.say.push( "<say-as interpret-as='interjection'>faltaba más.</say-as>" );
       context.say.push( "Localizando a " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + "." );
       context.card = {
         title: "Burrow Clock",
@@ -2326,12 +2326,12 @@ processIntents.waitForName = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.say.push( "<break time='1s'/>" );
       context.say.push( "¿Quieres localizar a alguien más?" );
       context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.HelpIntent': {
+      context.say.push( "<say-as interpret-as='interjection'>no hay problema.</say-as>" );
       context.say.push( "Solo dime el nombre de la persona que quieres localizar" );
       context.nextState = 'waitForName';
       break;
@@ -2349,7 +2349,7 @@ exitState.waitForName = async function(context) {
 };
 
 enterState.goodbye = async function(context) {
-  context.say.push( "¡Hasta luego!" );
+  context.say.push( "<say-as interpret-as='interjection'>nos vemos.</say-as>" );
   context.shouldEndSession = true;
 };
 processIntents.goodbye = async function(context, runOtherwise) {

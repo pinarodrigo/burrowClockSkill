@@ -1,12 +1,12 @@
 {
   "log": [
-    "✔ 5 tests run, all passed (829ms)\n",
+    "✔ 5 tests run, all passed (1144ms)\n",
     "Testing in region en-US, language default out of [\"default\",\"es-mx\"]",
-    "✔ test: happy path\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 0] Burrow Clock\n  ◣  Voice session ended\n8.  ❢   LaunchRequest     @ 3:03:15 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 1] Burrow Clock\n  ◣  Voice session ended\n12.  ❢   LaunchRequest     @ 3:05:25 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM\n     ◖----------------◗ \"Locating regina, regina está en salón. Bye!\" ... NO REPROMPT\n                          [CARD 2] Burrow Clock\n  ◣  Voice session ended\n18.  ❢   LaunchRequest     @ 3:08:40 PM\n     ◖----------------◗ \"Do you want me to locate regina?.\" ... NO REPROMPT\n19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM\n     ◖----------------◗ \"Locating viviana, viviana está en casa. Bye!\" ... NO REPROMPT\n                          [CARD 3] Burrow Clock\n  ◣  Voice session ended\n24.  ❢   LaunchRequest     @ 3:11:55 PM\n     ◖----------------◗ \"Do you want me to locate viviana?.\" ... NO REPROMPT\n25.  ❢  AMAZON.NoIntent    @ 3:13:00 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... \"Just tell me a name\"\n26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM\n     ◖----------------◗ \"Locating vivianar, No pude localizar a vivianar. Bye!\" ... NO REPROMPT\n                          [CARD 4] Burrow Clock\n  ◣  Voice session ended",
+    "✔ test: happy path\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=victoria @ 3:02:10 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 0] Burrow Clock\n6.  ❢  AMAZON.NoIntent    @ 3:03:15 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n9.  ❢   LaunchRequest     @ 3:04:20 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n10.  ❢  AMAZON.YesIntent   @ 3:05:25 PM\n     ◖----------------◗ \"Locating victoria, victoria está en casa. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 1] Burrow Clock\n11.  ❢  AMAZON.NoIntent    @ 3:06:30 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n14.  ❢   LaunchRequest     @ 3:07:35 PM\n     ◖----------------◗ \"Do you want me to locate victoria?.\" ... NO REPROMPT\n15.  ❢  AMAZON.NoIntent    @ 3:08:40 PM\n     ◖----------------◗ \"Whom do you want me to find?\" ... \"Just tell me a name\"\n16.  ❢     FIND_NAME      $name=regina @ 3:09:45 PM\n     ◖----------------◗ \"Locating regina, regina está a 578 metros. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 2] Burrow Clock\n18.  ❢  AMAZON.NoIntent    @ 3:10:50 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n21.  ❢   LaunchRequest     @ 3:11:55 PM\n     ◖----------------◗ \"Do you want me to locate regina?.\" ... NO REPROMPT\n22.  ❢  AMAZON.NoIntent    @ 3:13:00 PM\n     ◖----------------◗ \"Whom do you want me to find?\" ... \"Just tell me a name\"\n23.  ❢     FIND_NAME      $name=viviana @ 3:14:05 PM\n     ◖----------------◗ \"Locating viviana, viviana está en casa. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 3] Burrow Clock\n25.  ❢  AMAZON.NoIntent    @ 3:15:10 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n28.  ❢   LaunchRequest     @ 3:16:15 PM\n     ◖----------------◗ \"Do you want me to locate viviana?.\" ... NO REPROMPT\n29.  ❢  AMAZON.NoIntent    @ 3:17:20 PM\n     ◖----------------◗ \"Whom do you want me to find?\" ... \"Just tell me a name\"\n30.  ❢     FIND_NAME      $name=vivianar @ 3:18:25 PM\n     ◖----------------◗ \"Locating vivianar, No pude localizar a vivianar. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 4] Burrow Clock\n32.  ❢  AMAZON.NoIntent    @ 3:19:30 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended",
     "\n",
-    "✔ test: asking for help\n32.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM\n     ◖----------------◗ \"Just tell me the name of the person you want to find\" ... NO REPROMPT\n35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM\n     ◖----------------◗ \"Locating regina, regina está en salón. Bye!\" ... NO REPROMPT\n                          [CARD 5] Burrow Clock\n  ◣  Voice session ended",
+    "✔ test: asking for help\n37.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n39.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM\n     ◖----------------◗ \"Just tell me the name of the person you want to find\" ... NO REPROMPT\n40.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM\n     ◖----------------◗ \"Locating regina, regina está a 578 metros. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 5] Burrow Clock\n41.  ❢  AMAZON.NoIntent    @ 3:04:20 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended",
     "\n",
-    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Thursday\n\n  ✔ utils.test.js 'Web Service'\n\n  ✔ utils.test.js 'Web Service'\n"
+    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Monday\n\n  ✔ utils.test.js 'Web Service'\n\n  ✔ utils.test.js 'Web Service'\n"
   ],
   "cards": [
     {
@@ -30,7 +30,7 @@
     {
       "type": "Standard",
       "title": "Burrow Clock",
-      "text": "regina está en salón",
+      "text": "regina está a 578 metros",
       "image": {
         "smallImageUrl": "test://default/map.png",
         "largeImageUrl": "test://default/map.png"
@@ -57,7 +57,7 @@
     {
       "type": "Standard",
       "title": "Burrow Clock",
-      "text": "regina está en salón",
+      "text": "regina está a 578 metros",
       "image": {
         "smallImageUrl": "test://default/map.png",
         "largeImageUrl": "test://default/map.png"
@@ -99,7 +99,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.00c253f7-b8ce-406d-ad70-2ae8867ec4df",
+          "requestId": "litexaRequestId.789d10d1-57ca-4337-bf19-f94e7cab7e5e",
           "timestamp": "2017-10-01T13:01:05.000Z",
           "locale": "default"
         },
@@ -166,7 +166,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.1ed3bf3e-9af3-45e8-b681-1b40dd4f8dcd",
+          "requestId": "litexaRequestId.91c07c43-39bd-485b-931d-2e8a5a9da1b9",
           "timestamp": "2017-10-01T13:02:10.000Z",
           "locale": "default",
           "intent": {
@@ -186,10 +186,10 @@
         "sessionAttributes": {},
         "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
         "response": {
-          "shouldEndSession": true,
+          "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating victoria, victoria está en casa. Bye!</speak>",
+            "ssml": "<speak>Locating victoria, victoria está en casa. <break time='1s'/> Do you want me to find someone else?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "card": {
@@ -208,7 +208,7 @@
           "fetchEntitlements": true,
           "inSkillProducts": []
         },
-        "__currentState": null,
+        "__currentState": "askForAnother",
         "__settings": {
           "resetOnLaunch": true
         },
@@ -216,79 +216,11 @@
       },
       "trace": [
         "waitForName:FIND_NAME",
-        "goodbye"
+        "askForAnother"
       ]
     },
     {
-      "ref": "8.  ❢   LaunchRequest     @ 3:03:15 PM",
-      "request": {
-        "session": {
-          "sessionId": "SessionId.uuid",
-          "application": {
-            "applicationId": "amzn1.ask.skill.uuid"
-          },
-          "attributes": {},
-          "user": {
-            "userId": "amzn1.ask.account.stuff"
-          },
-          "new": true
-        },
-        "context": {
-          "System": {
-            "device": {
-              "deviceId": "someDeviceId",
-              "supportedInterfaces": {
-                "Alexa.Presentation.APL": {},
-                "Display": {}
-              }
-            },
-            "user": {
-              "userId": "amzn1.ask.account.stuff"
-            },
-            "application": {
-              "applicationId": "amzn1.ask.skill.uuid"
-            }
-          }
-        },
-        "request": {
-          "type": "LaunchRequest",
-          "requestId": "litexaRequestId.f132d683-207f-4543-927b-edef495baa0e",
-          "timestamp": "2017-10-01T13:03:15.000Z",
-          "locale": "default"
-        },
-        "version": "1.0"
-      },
-      "response": {
-        "version": "1.0",
-        "sessionAttributes": {},
-        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
-        "response": {
-          "shouldEndSession": false,
-          "outputSpeech": {
-            "type": "SSML",
-            "ssml": "<speak>Do you want me to locate victoria?.</speak>",
-            "playBehavior": "REPLACE_ALL"
-          }
-        }
-      },
-      "db": {
-        "__monetization": {
-          "fetchEntitlements": true,
-          "inSkillProducts": []
-        },
-        "__currentState": "askForRelocate",
-        "__settings": {
-          "resetOnLaunch": true
-        },
-        "name": "victoria"
-      },
-      "trace": [
-        "launch",
-        "askForRelocate"
-      ]
-    },
-    {
-      "ref": "9.  ❢  AMAZON.YesIntent   @ 3:04:20 PM",
+      "ref": "6.  ❢  AMAZON.NoIntent    @ 3:03:15 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -320,11 +252,11 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.1463fd1c-c1c6-460a-ab77-e36c03f24b1f",
-          "timestamp": "2017-10-01T13:04:20.000Z",
+          "requestId": "litexaRequestId.47aae3f9-2483-4cc4-9b6f-03270f552c50",
+          "timestamp": "2017-10-01T13:03:15.000Z",
           "locale": "default",
           "intent": {
-            "name": "AMAZON.YesIntent",
+            "name": "AMAZON.NoIntent",
             "slots": {}
           }
         },
@@ -338,17 +270,8 @@
           "shouldEndSession": true,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating victoria, victoria está en casa. Bye!</speak>",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
             "playBehavior": "REPLACE_ALL"
-          },
-          "card": {
-            "type": "Standard",
-            "title": "Burrow Clock",
-            "text": "victoria está en casa",
-            "image": {
-              "smallImageUrl": "test://default/map.png",
-              "largeImageUrl": "test://default/map.png"
-            }
           }
         }
       },
@@ -364,12 +287,12 @@
         "name": "victoria"
       },
       "trace": [
-        "askForRelocate:AMAZON.YesIntent",
+        "askForAnother:AMAZON.NoIntent",
         "goodbye"
       ]
     },
     {
-      "ref": "12.  ❢   LaunchRequest     @ 3:05:25 PM",
+      "ref": "9.  ❢   LaunchRequest     @ 3:04:20 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -401,8 +324,8 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.f5487a7b-c536-42f0-9d71-7896834ca75d",
-          "timestamp": "2017-10-01T13:05:25.000Z",
+          "requestId": "litexaRequestId.6cbf06cb-0b14-4225-b57c-55ff7b0378b6",
+          "timestamp": "2017-10-01T13:04:20.000Z",
           "locale": "default"
         },
         "version": "1.0"
@@ -437,7 +360,7 @@
       ]
     },
     {
-      "ref": "13.  ❢  AMAZON.NoIntent    @ 3:06:30 PM",
+      "ref": "10.  ❢  AMAZON.YesIntent   @ 3:05:25 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -469,8 +392,229 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.c37f43b8-6534-4c8c-92ab-2a38534dff60",
+          "requestId": "litexaRequestId.11e4c4b8-27b8-448d-a7f2-f9225d0dff0e",
+          "timestamp": "2017-10-01T13:05:25.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.YesIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Locating victoria, victoria está en casa. <break time='1s'/> Do you want me to find someone else?</speak>",
+            "playBehavior": "REPLACE_ALL"
+          },
+          "card": {
+            "type": "Standard",
+            "title": "Burrow Clock",
+            "text": "victoria está en casa",
+            "image": {
+              "smallImageUrl": "test://default/map.png",
+              "largeImageUrl": "test://default/map.png"
+            }
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForAnother",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "askForRelocate:AMAZON.YesIntent",
+        "askForAnother"
+      ]
+    },
+    {
+      "ref": "11.  ❢  AMAZON.NoIntent    @ 3:06:30 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.66ca9ab2-ee8b-4f4d-ad80-bad1a814c0f3",
           "timestamp": "2017-10-01T13:06:30.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "askForAnother:AMAZON.NoIntent",
+        "goodbye"
+      ]
+    },
+    {
+      "ref": "14.  ❢   LaunchRequest     @ 3:07:35 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": true
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "LaunchRequest",
+          "requestId": "litexaRequestId.d4ccd0db-fda4-4c57-9bbc-fd42d7d04f00",
+          "timestamp": "2017-10-01T13:07:35.000Z",
+          "locale": "default"
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": false,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>Do you want me to locate victoria?.</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForRelocate",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "victoria"
+      },
+      "trace": [
+        "launch",
+        "askForRelocate"
+      ]
+    },
+    {
+      "ref": "15.  ❢  AMAZON.NoIntent    @ 3:08:40 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.f02af0a9-d4f3-4ecd-ac97-3ee11093c69f",
+          "timestamp": "2017-10-01T13:08:40.000Z",
           "locale": "default",
           "intent": {
             "name": "AMAZON.NoIntent",
@@ -487,7 +631,7 @@
           "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "ssml": "<speak>Whom do you want me to find?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "reprompt": {
@@ -515,7 +659,7 @@
       ]
     },
     {
-      "ref": "14.  ❢     FIND_NAME      $name=regina @ 3:07:35 PM",
+      "ref": "16.  ❢     FIND_NAME      $name=regina @ 3:09:45 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -547,8 +691,8 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.3395d520-c3a3-47b6-9b77-b42c1e07c583",
-          "timestamp": "2017-10-01T13:07:35.000Z",
+          "requestId": "litexaRequestId.90e70535-60f6-4640-ab61-943e1c3244e7",
+          "timestamp": "2017-10-01T13:09:45.000Z",
           "locale": "default",
           "intent": {
             "name": "FIND_NAME",
@@ -567,20 +711,92 @@
         "sessionAttributes": {},
         "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
         "response": {
-          "shouldEndSession": true,
+          "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating regina, regina está en salón. Bye!</speak>",
+            "ssml": "<speak>Locating regina, regina está a 578 metros. <break time='1s'/> Do you want me to find someone else?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "card": {
             "type": "Standard",
             "title": "Burrow Clock",
-            "text": "regina está en salón",
+            "text": "regina está a 578 metros",
             "image": {
               "smallImageUrl": "test://default/map.png",
               "largeImageUrl": "test://default/map.png"
             }
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForAnother",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "regina"
+      },
+      "trace": [
+        "waitForName:FIND_NAME",
+        "askForAnother"
+      ]
+    },
+    {
+      "ref": "18.  ❢  AMAZON.NoIntent    @ 3:10:50 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.55711d7e-db70-47f8-8d14-b38fdef05718",
+          "timestamp": "2017-10-01T13:10:50.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
           }
         }
       },
@@ -596,12 +812,12 @@
         "name": "regina"
       },
       "trace": [
-        "waitForName:FIND_NAME",
+        "askForAnother:AMAZON.NoIntent",
         "goodbye"
       ]
     },
     {
-      "ref": "18.  ❢   LaunchRequest     @ 3:08:40 PM",
+      "ref": "21.  ❢   LaunchRequest     @ 3:11:55 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -633,8 +849,8 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.8bdd4abc-8c81-4841-92a9-f3dfb1e12d0e",
-          "timestamp": "2017-10-01T13:08:40.000Z",
+          "requestId": "litexaRequestId.35d199e1-0d67-48c5-bf4e-194ea5c081be",
+          "timestamp": "2017-10-01T13:11:55.000Z",
           "locale": "default"
         },
         "version": "1.0"
@@ -669,7 +885,7 @@
       ]
     },
     {
-      "ref": "19.  ❢  AMAZON.NoIntent    @ 3:09:45 PM",
+      "ref": "22.  ❢  AMAZON.NoIntent    @ 3:13:00 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -701,8 +917,8 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.9c50c539-6088-44d5-8e97-f4788d4e5e96",
-          "timestamp": "2017-10-01T13:09:45.000Z",
+          "requestId": "litexaRequestId.618f5dcd-51f2-4870-90a5-ed571168db8a",
+          "timestamp": "2017-10-01T13:13:00.000Z",
           "locale": "default",
           "intent": {
             "name": "AMAZON.NoIntent",
@@ -719,7 +935,7 @@
           "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "ssml": "<speak>Whom do you want me to find?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "reprompt": {
@@ -747,7 +963,7 @@
       ]
     },
     {
-      "ref": "20.  ❢     FIND_NAME      $name=viviana @ 3:10:50 PM",
+      "ref": "23.  ❢     FIND_NAME      $name=viviana @ 3:14:05 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -779,8 +995,8 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.849ed29a-0346-43b8-b9d5-de02f63cec93",
-          "timestamp": "2017-10-01T13:10:50.000Z",
+          "requestId": "litexaRequestId.5203208c-2bf7-441c-8684-3df324e146b0",
+          "timestamp": "2017-10-01T13:14:05.000Z",
           "locale": "default",
           "intent": {
             "name": "FIND_NAME",
@@ -799,10 +1015,10 @@
         "sessionAttributes": {},
         "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
         "response": {
-          "shouldEndSession": true,
+          "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating viviana, viviana está en casa. Bye!</speak>",
+            "ssml": "<speak>Locating viviana, viviana está en casa. <break time='1s'/> Do you want me to find someone else?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "card": {
@@ -821,7 +1037,7 @@
           "fetchEntitlements": true,
           "inSkillProducts": []
         },
-        "__currentState": null,
+        "__currentState": "askForAnother",
         "__settings": {
           "resetOnLaunch": true
         },
@@ -829,11 +1045,83 @@
       },
       "trace": [
         "waitForName:FIND_NAME",
+        "askForAnother"
+      ]
+    },
+    {
+      "ref": "25.  ❢  AMAZON.NoIntent    @ 3:15:10 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.242dad8d-236c-4626-a337-ea93d470e65c",
+          "timestamp": "2017-10-01T13:15:10.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "viviana"
+      },
+      "trace": [
+        "askForAnother:AMAZON.NoIntent",
         "goodbye"
       ]
     },
     {
-      "ref": "24.  ❢   LaunchRequest     @ 3:11:55 PM",
+      "ref": "28.  ❢   LaunchRequest     @ 3:16:15 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -865,8 +1153,8 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.e87378c3-a2b9-46bb-a681-d007f7f80d38",
-          "timestamp": "2017-10-01T13:11:55.000Z",
+          "requestId": "litexaRequestId.9968617d-bfa4-4386-85ae-f1febfbeceb7",
+          "timestamp": "2017-10-01T13:16:15.000Z",
           "locale": "default"
         },
         "version": "1.0"
@@ -901,7 +1189,7 @@
       ]
     },
     {
-      "ref": "25.  ❢  AMAZON.NoIntent    @ 3:13:00 PM",
+      "ref": "29.  ❢  AMAZON.NoIntent    @ 3:17:20 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -933,8 +1221,8 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.f8ab8965-ebf4-4ec0-b83f-fd7d40e82252",
-          "timestamp": "2017-10-01T13:13:00.000Z",
+          "requestId": "litexaRequestId.fe3204df-87b6-478b-aca5-35f7fa1903a0",
+          "timestamp": "2017-10-01T13:17:20.000Z",
           "locale": "default",
           "intent": {
             "name": "AMAZON.NoIntent",
@@ -951,7 +1239,7 @@
           "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Whom do you want me to locate?</speak>",
+            "ssml": "<speak>Whom do you want me to find?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "reprompt": {
@@ -979,7 +1267,7 @@
       ]
     },
     {
-      "ref": "26.  ❢     FIND_NAME      $name=vivianar @ 3:14:05 PM",
+      "ref": "30.  ❢     FIND_NAME      $name=vivianar @ 3:18:25 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -1011,8 +1299,8 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.f912f002-8190-4677-977c-13bc3315fcb2",
-          "timestamp": "2017-10-01T13:14:05.000Z",
+          "requestId": "litexaRequestId.2b4bf3d7-9dae-4dc0-b194-dcfb11faca6a",
+          "timestamp": "2017-10-01T13:18:25.000Z",
           "locale": "default",
           "intent": {
             "name": "FIND_NAME",
@@ -1031,10 +1319,10 @@
         "sessionAttributes": {},
         "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
         "response": {
-          "shouldEndSession": true,
+          "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating vivianar, No pude localizar a vivianar. Bye!</speak>",
+            "ssml": "<speak>Locating vivianar, No pude localizar a vivianar. <break time='1s'/> Do you want me to find someone else?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "card": {
@@ -1053,7 +1341,7 @@
           "fetchEntitlements": true,
           "inSkillProducts": []
         },
-        "__currentState": null,
+        "__currentState": "askForAnother",
         "__settings": {
           "resetOnLaunch": true
         },
@@ -1061,11 +1349,83 @@
       },
       "trace": [
         "waitForName:FIND_NAME",
+        "askForAnother"
+      ]
+    },
+    {
+      "ref": "32.  ❢  AMAZON.NoIntent    @ 3:19:30 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.f24940f5-899f-4737-84e8-2a64052dcd81",
+          "timestamp": "2017-10-01T13:19:30.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": null,
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "vivianar"
+      },
+      "trace": [
+        "askForAnother:AMAZON.NoIntent",
         "goodbye"
       ]
     },
     {
-      "ref": "32.  ❢   LaunchRequest     @ 3:01:05 PM",
+      "ref": "37.  ❢   LaunchRequest     @ 3:01:05 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -1097,7 +1457,7 @@
         },
         "request": {
           "type": "LaunchRequest",
-          "requestId": "litexaRequestId.e5e1bc45-5e39-4ee5-b284-bc72f5359632",
+          "requestId": "litexaRequestId.27b52c10-70ce-4ec9-ab95-27da409b262c",
           "timestamp": "2017-10-01T13:01:05.000Z",
           "locale": "default"
         },
@@ -1132,7 +1492,7 @@
       ]
     },
     {
-      "ref": "34.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM",
+      "ref": "39.  ❢ AMAZON.HelpIntent   @ 3:02:10 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -1164,7 +1524,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.b95c3efa-af84-4bfc-812e-5cee12bd319b",
+          "requestId": "litexaRequestId.8c33ffd9-db89-47c7-b37b-a6d61bd0e004",
           "timestamp": "2017-10-01T13:02:10.000Z",
           "locale": "default",
           "intent": {
@@ -1203,7 +1563,7 @@
       ]
     },
     {
-      "ref": "35.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM",
+      "ref": "40.  ❢     FIND_NAME      $name=regina @ 3:03:15 PM",
       "request": {
         "session": {
           "sessionId": "SessionId.uuid",
@@ -1235,7 +1595,7 @@
         },
         "request": {
           "type": "IntentRequest",
-          "requestId": "litexaRequestId.df147968-cef1-48f2-be8b-72b8cd15da7c",
+          "requestId": "litexaRequestId.435bf447-5440-48c9-a05e-d2bbd998f740",
           "timestamp": "2017-10-01T13:03:15.000Z",
           "locale": "default",
           "intent": {
@@ -1255,20 +1615,92 @@
         "sessionAttributes": {},
         "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
         "response": {
-          "shouldEndSession": true,
+          "shouldEndSession": false,
           "outputSpeech": {
             "type": "SSML",
-            "ssml": "<speak>Locating regina, regina está en salón. Bye!</speak>",
+            "ssml": "<speak>Locating regina, regina está a 578 metros. <break time='1s'/> Do you want me to find someone else?</speak>",
             "playBehavior": "REPLACE_ALL"
           },
           "card": {
             "type": "Standard",
             "title": "Burrow Clock",
-            "text": "regina está en salón",
+            "text": "regina está a 578 metros",
             "image": {
               "smallImageUrl": "test://default/map.png",
               "largeImageUrl": "test://default/map.png"
             }
+          }
+        }
+      },
+      "db": {
+        "__monetization": {
+          "fetchEntitlements": true,
+          "inSkillProducts": []
+        },
+        "__currentState": "askForAnother",
+        "__settings": {
+          "resetOnLaunch": true
+        },
+        "name": "regina"
+      },
+      "trace": [
+        "waitForName:FIND_NAME",
+        "askForAnother"
+      ]
+    },
+    {
+      "ref": "41.  ❢  AMAZON.NoIntent    @ 3:04:20 PM",
+      "request": {
+        "session": {
+          "sessionId": "SessionId.uuid",
+          "application": {
+            "applicationId": "amzn1.ask.skill.uuid"
+          },
+          "attributes": {},
+          "user": {
+            "userId": "amzn1.ask.account.stuff"
+          },
+          "new": false
+        },
+        "context": {
+          "System": {
+            "device": {
+              "deviceId": "someDeviceId",
+              "supportedInterfaces": {
+                "Alexa.Presentation.APL": {},
+                "Display": {}
+              }
+            },
+            "user": {
+              "userId": "amzn1.ask.account.stuff"
+            },
+            "application": {
+              "applicationId": "amzn1.ask.skill.uuid"
+            }
+          }
+        },
+        "request": {
+          "type": "IntentRequest",
+          "requestId": "litexaRequestId.0ce1421b-a5ec-437c-98e4-911ca0cc0802",
+          "timestamp": "2017-10-01T13:04:20.000Z",
+          "locale": "default",
+          "intent": {
+            "name": "AMAZON.NoIntent",
+            "slots": {}
+          }
+        },
+        "version": "1.0"
+      },
+      "response": {
+        "version": "1.0",
+        "sessionAttributes": {},
+        "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+        "response": {
+          "shouldEndSession": true,
+          "outputSpeech": {
+            "type": "SSML",
+            "ssml": "<speak>ok <break time='1s'/> Bye!</speak>",
+            "playBehavior": "REPLACE_ALL"
           }
         }
       },
@@ -1284,12 +1716,12 @@
         "name": "regina"
       },
       "trace": [
-        "waitForName:FIND_NAME",
+        "askForAnother:AMAZON.NoIntent",
         "goodbye"
       ]
     }
   ],
-  "summary": "✔ 5 tests run, all passed (829ms)\n",
+  "summary": "✔ 5 tests run, all passed (1144ms)\n",
   "tallies": {
     "successes": 5,
     "fails": 0

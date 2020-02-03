@@ -4,7 +4,7 @@
       "versions": [
         {
           "lastDeployment": {
-            "date": "1/31/2020, 5:29:21 PM",
+            "date": "2/3/2020, 12:27:43 PM",
             "deploymentTypes": {
               "lambda": true,
               "assets": true,
@@ -12,9 +12,9 @@
               "manifest": true
             },
             "git": {
-              "currentCommitHash": "db1d93e0bf03545f66225c749d1928c6acb77d05",
+              "currentCommitHash": "9784e22115b406b252aa52a4ff93117fecc9d817",
               "currentCommitComment": [
-                "Adds Card to Alexa response"
+                "Adds askForAnother section in main.litexa"
               ],
               "uncommittedChanges": [
                 "[modified] .deploy/development/assets.log",
@@ -23,9 +23,17 @@
                 "[modified] .deploy/development/lambda/index.js",
                 "[modified] .deploy/development/local-cache.json",
                 "[modified] .deploy/development/manifest.log",
+                "[modified] .deploy/development/skill.json",
+                "[modified] .test/lambda.js",
+                "[modified] .test/output.json",
+                "[modified] .test/output.log",
+                "[modified] .test/project-config.json",
+                "[modified] .test/test.js",
                 "[modified] artifacts.json",
+                "[modified] lib/utils.js",
                 "[modified] litexa/languages/es-MX/main.litexa",
-                "[modified] litexa/main.litexa"
+                "[modified] litexa/main.test.litexa",
+                "[modified] skill.js"
               ]
             },
             "coreVersion": "0.3.1"

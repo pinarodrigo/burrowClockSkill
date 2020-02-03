@@ -12,9 +12,9 @@ launch
 askForRelocate
   when AMAZON.YesIntent
     local speechToText = callLocalizar(@name)
+    say "<!pérame.>"
     say "Localizando a @name, {speechToText}."
     card "Burrow Clock", map.png, "{speechToText}" 
-    say "<...1s>"
     say "¿Quieres localizar a alguien más?"
     -> askForAnother
 
@@ -27,12 +27,12 @@ askForRelocate
 
 askForAnother
   when AMAZON.YesIntent
-      say "¿A quién quieres que localice?"
+      say "<!perfecto.> ¿A quién quieres que localice?"
       -> waitForName
 
   when AMAZON.NoIntent
-    say "ok"
-    say "<...1s>"
+    say "<!chido.>"
+    #say "<...1s>"
     -> goodbye
 
 waitForName
@@ -49,13 +49,14 @@ waitForName
     # save the name in the permanent database
     @name = $name
     local speechToText = callLocalizar(@name)
+    say "<!faltaba más.>"
     say "Localizando a @name, {speechToText}."
-    card "Burrow Clock", map.png, "{speechToText}" 
-    say "<...1s>"
+    card "Burrow Clock", map.png, "{speechToText}"
     say "¿Quieres localizar a alguien más?"
     -> askForAnother
 
   when AMAZON.HelpIntent
+    say "<!no hay problema.>"
     say "Solo dime el nombre de la persona que quieres localizar"
     -> waitForName
 
@@ -64,6 +65,6 @@ waitForName
     -> askForRelocate
 
 goodbye
-  say "¡Hasta luego!"
+  say "<!nos vemos.>"
   END
 

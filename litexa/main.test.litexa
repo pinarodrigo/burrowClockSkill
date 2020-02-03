@@ -3,28 +3,33 @@ TEST "happy path"
   launch 
   user: "locate victoria"
   @name == "victoria"
+  user: AMAZON.NoIntent
   END
 
   launch 
   user: AMAZON.YesIntent
+  user: AMAZON.NoIntent
   END
 
   launch 
   user: AMAZON.NoIntent
   user: "find regina"
   @name == "regina"
+  user: AMAZON.NoIntent
   END
 
   launch 
   user: AMAZON.NoIntent
   user: "find viviana"
   @name == "viviana"
+  user: AMAZON.NoIntent
   END
 
   launch 
   user: AMAZON.NoIntent
   user: "find vivianar"
   @name == "vivianar"
+  user: AMAZON.NoIntent
   END
 
 
@@ -33,5 +38,6 @@ TEST "asking for help"
   alexa: waitForName
   user: AMAZON.HelpIntent
   user: "locate regina"
+  user: AMAZON.NoIntent
   END
 

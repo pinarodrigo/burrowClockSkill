@@ -4,21 +4,20 @@
     "publishingInformation": {
       "isAvailableWorldwide": false,
       "distributionCountries": [
-        "US",
-        "MX"
+        "MX",
+        "DE"
       ],
       "distributionMode": "PUBLIC",
       "category": "GAMES",
       "testingInstructions": "replace with testing instructions",
       "locales": {
         "en-US": {
-          "name": "burrowClockSkill (development)",
-          "summary": "replace with brief description, no longer than 120 characters",
-          "description": "Longer description, goes to the skill store. Line breaks are supported.",
+          "name": "Burrow Clock Skill (development)",
+          "summary": "Skill to locate family members",
+          "description": "This skill allows you to locate family members using the owntracks app to push their location information",
           "examplePhrases": [
-            "Alexa, launch PineappleLocator",
-            "Alexa, open PineappleLocator",
-            "Alexa, play PineappleLocator"
+            "Alexa, family locator",
+            "Alexa, open family locator"
           ],
           "keywords": [
             "game",
@@ -28,12 +27,11 @@
           "largeIconUri": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"
         },
         "es-MX": {
-          "name": "burrowClockSkill (development)",
-          "summary": "Skill para localizar a las piñas",
-          "description": "Skill para localizar a las piñas",
+          "name": "Burrow Clock Skill (development)",
+          "summary": "Skill para localizar a los Piña",
+          "description": "Skill para localizar a miembros de la familia que usen el apps de Owntracks para subir su posición geográfica",
           "examplePhrases": [
-            "Alexa, inicia LocalizadorPinas",
-            "Alexa, abre LocalizadorPinas"
+            "Alexa, localiza familia"
           ],
           "keywords": [
             "juegos",

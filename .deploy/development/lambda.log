@@ -1,14 +1,14 @@
 [lambda] +0ms deploying lambda
-[lambda] +18ms loaded AWS profile default
-[lambda] +389ms considering node_modules
-[lambda] +25ms node modules appear to be up to date
-[lambda] +31ms wrote index.js
+[lambda] +20ms loaded AWS profile default
+[lambda] +397ms considering node_modules
+[lambda] +63ms wrote index.js
+[lambda] +119ms synchronized node_modules in 149ms
 [lambda] +0ms beginning zip archive
-[lambda] +255ms Platform: darwin
-[lambda] +0ms zip archiving complete in 255ms
-[lambda] +8ms zip SHA: dATvEfTyOTP09wEHWTGZZXTELFD73+7yyG+sS/ytR+w=
+[lambda] +242ms Platform: darwin
+[lambda] +1ms zip archiving complete in 243ms
+[lambda] +8ms zip SHA: 9TM/PWuzeTOw5yAW9d7sjnAZTmk8Za6b5T7471w85G4=
 [lambda] +0ms skipping Lambda burrowClockSkill_development_litexa_handler configuration check
 [lambda] +44ms skipping IAM role litexa_handler_lambda
-[lambda] +1ms patching Lambda configuration
-[lambda] +705ms updating code for Lambda function burrowClockSkill_development_litexa_handler
-[lambda] +3654ms lambda deployment complete in 5129ms
+[lambda] +0ms patching Lambda configuration
+[lambda] +678ms updating code for Lambda function burrowClockSkill_development_litexa_handler
+[lambda] +4550ms lambda deployment complete in 6122ms

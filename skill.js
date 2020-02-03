@@ -11,20 +11,19 @@ module.exports = {
     manifest: {
         publishingInformation: {
             isAvailableWorldwide: false,
-            distributionCountries: ['US', 'MX'],
+            distributionCountries: ['MX', 'DE'],
             distributionMode: 'PUBLIC',
             category: 'GAMES',
             testingInstructions: 'replace with testing instructions',
             locales: {
                 'en-US': {
-                    name: 'burrowClockSkill',
+                    name: 'Burrow Clock Skill',
                     invocation: 'family locator',
-                    summary: 'replace with brief description, no longer than 120 characters',
-                    description: 'Longer description, goes to the skill store. Line breaks are supported.',
+                    summary: 'Skill to locate family members',
+                    description: 'This skill allows you to locate family members using the owntracks app to push their location information',
                     examplePhrases: [
-                        'Alexa, launch PineappleLocator',
-                        'Alexa, open PineappleLocator',
-                        'Alexa, play PineappleLocator',
+                        'Alexa, family locator',
+                        'Alexa, open family locator'
                     ],
                     keywords: [
                         'game',
@@ -32,29 +31,18 @@ module.exports = {
                     ]
                 },
                 'es-MX': {
-                    name: 'burrowClockSkill',
+                    name: 'Burrow Clock Skill',
                     invocation: 'localiza familia',
-                    summary: 'Skill para localizar a las piñas',
-                    description: 'Skill para localizar a las piñas',
+                    summary: 'Skill para localizar a los Piña',
+                    description: 'Skill para localizar a miembros de la familia que usen el apps de Owntracks para subir su posición geográfica',
                     examplePhrases: [
-                        'Alexa, inicia LocalizadorPinas',
-                        'Alexa, abre LocalizadorPinas'
+                        'Alexa, localiza familia'
                     ],
                     keywords: [
                         'juegos',
                         'diversión'
                     ]
                 }
-            }
-        },
-        permissions: [{ "name": "alexa::devices:all:notifications:write" }],
-        events: {
-            "publications": [
-                { "eventName": "AMAZON.OrderStatus.Updated" },
-                { "eventName": "AMAZON.MediaContent.Available" }
-            ],
-            "endpoint": {
-                "uri": "YOUR-AWS-LAMBDA-FUNCTION-ARN"
             }
         },
         privacyAndCompliance: {
