@@ -1,43 +1,37 @@
-TEST "happy path"
+TEST "happy paths"
 
-  launch 
-  user: "locate victoria"
+  launch
+  user: "find victoria"
   @name == "victoria"
   user: AMAZON.NoIntent
   END
 
-  launch 
+  launch
   user: AMAZON.YesIntent
   user: AMAZON.NoIntent
   END
 
-  launch 
-  user: AMAZON.NoIntent
-  user: "find regina"
-  @name == "regina"
-  user: AMAZON.NoIntent
-  END
-
-  launch 
+  launch
   user: AMAZON.NoIntent
   user: "find viviana"
-  @name == "viviana"
   user: AMAZON.NoIntent
   END
 
-  launch 
+  launch
   user: AMAZON.NoIntent
-  user: "find vivianar"
-  @name == "vivianar"
-  user: AMAZON.NoIntent
-  END
-
-
-TEST "asking for help"
-  launch 
-  alexa: waitForName
-  user: AMAZON.HelpIntent
-  user: "locate regina"
+  user: "find viviana"
+  user: AMAZON.YesIntent
+  user: "find rodrigo"
   user: AMAZON.NoIntent
   END
 
+  launch
+  user: AMAZON.NoIntent
+  user: "viviana"
+  user: "rodrigo"
+  user: "victoria"
+  user: "regina"
+  user: AMAZON.NoIntent
+  END
+
+  

@@ -7,58 +7,53 @@ launch
   else 
     say "¿A quién quieres que localice?"
   # move on to the askForRelocate state
-    -> waitForName
+    -> askForAnother
 
 askForRelocate
   when AMAZON.YesIntent
-    local speechToText = callLocalizar(@name)
-    say "<!pérame.>"
-    say "Localizando a @name, {speechToText}."
-    card "Burrow Clock", map.png, "{speechToText}" 
-    say "¿Quieres localizar a alguien más?"
-    -> askForAnother
+    -> searchName
 
   when AMAZON.NoIntent
     # add this question to our next response
     say "¿A quién quieres que localice?"
     # add an automatic re-prompt, in case the user says nothing
     reprompt "Solo dime un nombre"
-    -> waitForName
+    -> askForAnother
 
 askForAnother
+  when "a $anotherName"
+    or "encuentra a $anotherName"
+    with $anotherName = AMAZON.FirstName
+
+    @name = $anotherName
+    -> searchName
+
   when AMAZON.YesIntent
       say "<!perfecto.> ¿A quién quieres que localice?"
-      -> waitForName
+      -> askForAnother
 
   when AMAZON.NoIntent
     say "<!chido.>"
     #say "<...1s>"
     -> goodbye
-
-waitForName
-  # do nothing when we start this state, and go nowhere; this ends the handler,
-  # sends our response, and opens the microphone to listen
-
-  when "encuentra a $name"
-    or "localiza a $name"
-    or "donde esta $name"
-    or "a $name"
-    with $name = AMAZON.FirstName
-    # if user answers with a name from our name list
-
-    # save the name in the permanent database
-    @name = $name
-    local speechToText = callLocalizar(@name)
-    say "<!faltaba más.>"
-    say "Localizando a @name, {speechToText}."
-    card "Burrow Clock", map.png, "{speechToText}"
-    say "¿Quieres localizar a alguien más?"
+    
+  when AMAZON.HelpIntent
+    say "<!no hay problema.>"
+    say "Solo dime el nombre de la persona que quieres localizar"
     -> askForAnother
+
+searchName
+  local speechToText = callLocalizar(@name)
+  say "<!faltaba más.>"
+  say "{speechToText}."
+  card "Burrow Clock", map.png, "{speechToText}"
+  say "¿Quieres localizar a alguien más?"
+  -> askForAnother
 
   when AMAZON.HelpIntent
     say "<!no hay problema.>"
     say "Solo dime el nombre de la persona que quieres localizar"
-    -> waitForName
+    -> askForAnother
 
   otherwise
     say "¿Quieres que localice a @name?."
