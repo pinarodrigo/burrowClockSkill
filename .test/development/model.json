@@ -23,14 +23,16 @@
         "samples": []
       },
       {
-        "name": "WHERE_IS_ANOTHERNAME",
+        "name": "FIND_NAME",
         "samples": [
-          "where is {anotherName}?",
-          "find {anotherName}"
+          "find {name}",
+          "locate {name}",
+          "where is {name}",
+          "{name}"
         ],
         "slots": [
           {
-            "name": "anotherName",
+            "name": "name",
             "type": "AMAZON.FirstName"
           }
         ]

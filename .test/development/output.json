@@ -1,0 +1,37 @@
+{
+  "log": [
+    "✔ 4 tests run, all passed (508ms)\n",
+    "Testing in region en-US, language default out of [\"default\",\"es-MX\"]",
+    "✔ test: happy paths\n3.  ❢   LaunchRequest     @ 3:01:05 PM\n     ◖----------------◗ \"Whom do you want me to locate?\" ... NO REPROMPT\n4.  ❢     FIND_NAME      $name=rodrigo @ 3:02:10 PM\n     ◖----------------◗ \"Locating rodrigo, rodrigo está a 43 metros de la casa, aproximadamente a 1 minutos caminando. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 0] Burrow Clock\n     ! Distance: 43, time: 0.7166666666666667\n6.  ❢  AMAZON.NoIntent    @ 3:03:15 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended\n9.  ❢   LaunchRequest     @ 3:04:20 PM\n     ◖----------------◗ \"Do you want me to locate rodrigo?.\" ... NO REPROMPT\n10.  ❢  AMAZON.NoIntent    @ 3:05:25 PM\n     ◖----------------◗ \"Whom do you want me to find?\" ... \"Just tell me a name\"\n11.  ❢     FIND_NAME      $name=viviana @ 3:06:30 PM\n     ◖----------------◗ \"Locating viviana, viviana está a NaN metros de la casa, aproximadamente a NaN minutos caminando. <...1s> Do you want me to find someone else?\" ... NO REPROMPT\n                          [CARD 1] Burrow Clock\n     ! Distance: undefined, time: NaN\n12.  ❢  AMAZON.NoIntent    @ 3:07:35 PM\n     ◖----------------◗ \"ok <...1s> Bye!\" ... NO REPROMPT\n  ◣  Voice session ended",
+    "\n",
+    "✔ utils.test.js, 3 tests passed\n  ✔ utils.test.js 'Utils'\n  c! the arguments are [ 1, 2, 3 ]\n  t! today is Sunday\n\n  ✔ utils.test.js 'Web Service'\n\n  ✔ utils.test.js 'Web Service'\n"
+  ],
+  "cards": [
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "rodrigo está a 43 metros de la casa, aproximadamente a 1 minutos caminando",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    },
+    {
+      "type": "Standard",
+      "title": "Burrow Clock",
+      "text": "viviana está a NaN metros de la casa, aproximadamente a NaN minutos caminando",
+      "image": {
+        "smallImageUrl": "test://default/map.png",
+        "largeImageUrl": "test://default/map.png"
+      }
+    }
+  ],
+  "directives": [],
+  "raw": [],
+  "summary": "✔ 4 tests run, all passed (508ms)\n",
+  "tallies": {
+    "successes": 4,
+    "fails": 0
+  },
+  "success": true
+}

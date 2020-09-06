@@ -28,7 +28,9 @@ module.exports = {
                     keywords: [
                         'game',
                         'fun'
-                    ]
+                    ],
+                    "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+                    "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"          
                 },
                 'es-MX': {
                     name: 'Burrow Clock Skill',
@@ -41,7 +43,9 @@ module.exports = {
                     keywords: [
                         'juegos',
                         'diversión'
-                    ]
+                    ],
+                    "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+                    "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"          
                 }
             }
         },

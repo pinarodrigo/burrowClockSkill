@@ -1,5 +1,6 @@
 {
   "variant": "development",
+  "doNotParseExtensions": false,
   "name": "burrowClockSkill",
   "deployments": {
     "development": {
@@ -50,6 +51,7 @@
         "S_IFSOCK": 49152,
         "O_CREAT": 512,
         "O_EXCL": 2048,
+        "UV_FS_O_FILEMAP": 0,
         "O_NOCTTY": 131072,
         "O_TRUNC": 1024,
         "O_APPEND": 8,
@@ -81,19 +83,21 @@
         "COPYFILE_FICLONE": 2,
         "UV_FS_COPYFILE_FICLONE_FORCE": 4,
         "COPYFILE_FICLONE_FORCE": 4
-      }
+      },
+      "promises": {}
     },
     "_hasPrefix": true,
     "logPrefix": "[project info] ",
     "_verbose": false,
     "includeRunningTime": true,
-    "lastOutStreamTime": "2020-02-07T17:45:25.253Z",
-    "lastFileTime": "2020-02-07T17:45:25.253Z",
-    "startTime": "2020-02-07T17:45:25.253Z",
+    "lastOutStreamTime": "2020-09-06T11:53:08.643Z",
+    "lastFileTime": "2020-09-06T11:53:08.643Z",
+    "startTime": "2020-09-06T11:53:08.643Z",
     "_canWriteToFileStreamValid": true,
     "_canWriteToFileStream": false
   },
-  "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
+  "DEPLOY": {},
+  "userAgent": "@litexa/core/0.6.2 Node/v14.5.0",
   "extensions": {},
   "languages": {
     "default": {
@@ -141,5 +145,9 @@
     }
   },
   "languagesRoot": "/Users/rpn8fe/playground/burrowClockSkill/litexa/languages",
-  "testRoot": "/Users/rpn8fe/playground/burrowClockSkill/.test"
+  "localization": {
+    "intents": {},
+    "speech": {}
+  },
+  "testRoot": "/Users/rpn8fe/playground/burrowClockSkill/.test/development"
 }

@@ -23,8 +23,8 @@
             "game",
             "fun"
           ],
-          "smallIconUri": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
-          "largeIconUri": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"
+          "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+          "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"
         },
         "es-MX": {
           "name": "Burrow Clock Skill (development)",
@@ -37,8 +37,8 @@
             "juegos",
             "diversión"
           ],
-          "smallIconUri": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-108.png",
-          "largeIconUri": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-512.png"
+          "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+          "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png"
         }
       }
     },
@@ -62,12 +62,12 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+          "uri": "arn:aws:lambda:eu-central-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
         },
         "regions": {
           "NA": {
             "endpoint": {
-              "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+              "uri": "arn:aws:lambda:eu-central-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
             }
           }
         },

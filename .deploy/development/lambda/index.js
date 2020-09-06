@@ -1,6 +1,7 @@
 var litexa = exports.litexa;
 if (typeof(litexa) === 'undefined') { litexa = {}; }
 if (typeof(litexa.modulesRoot) === 'undefined') { litexa.modulesRoot = process.cwd(); }
+litexa.DEPLOY = {};
 /*
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -41,7 +42,7 @@ cloudWatch = new AWS.CloudWatch({
 });
 
 db = {
-  fetchDB: function({identity, dbKey, fetchCallback}) {
+  fetchDB: function({identity, dbKey, ttlConfiguration, fetchCallback}) {
     var DBKEY, databaseObject, mock, params, ref, tableName;
     if (true) {
       tableName = typeof process !== "undefined" && process !== null ? (ref = process.env) != null ? ref.dynamoTableName : void 0 : void 0;
@@ -126,6 +127,9 @@ db = {
               dispatchSave = function() {
                 //console.log "sending #{JSON.stringify(params)} to dynamo"
                 params.Item.lastResponseTime = (new Date()).getTime();
+                if (((ttlConfiguration != null ? ttlConfiguration.AttributeName : void 0) != null) && ((ttlConfiguration != null ? ttlConfiguration.secondsToLive : void 0) != null)) {
+                  params.Item[ttlConfiguration.AttributeName] = Math.round(params.Item.lastResponseTime / 1000 + ttlConfiguration.secondsToLive);
+                }
                 return dynamoDocClient.put(params, function(err, data) {
                   if ((err != null ? err.code : void 0) === 'ConditionalCheckFailedException') {
                     console.log(`DBCONDITION: ${err}`);
@@ -668,7 +672,7 @@ DBTypeWrapper = class DBTypeWrapper {
         Object.setPrototypeOf(value, dbType.prototype);
       } else {
         // or construct a new instance
-        value = new dbType;
+        value = new dbType();
         this.db.write(name, value);
       }
     } else if ((dbType != null ? dbType.Prepare : void 0) != null) {
@@ -764,7 +768,7 @@ buildBuyInSkillProductDirective = async function(stateContext, referenceName) {
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildBuyInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildBuyInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
@@ -854,7 +858,7 @@ buildCancelInSkillProductDirective = async(stateContext, referenceName) => {
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildCancelInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildCancelInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
@@ -874,7 +878,7 @@ buildUpsellInSkillProductDirective = async(stateContext, referenceName, upsellMe
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildUpsellInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildUpsellInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
@@ -967,17 +971,13 @@ litexa.extendedEventNames = [];
 // END OF LIBRARY CODE
 
 // version summary
-const userAgent = "@litexa/core/0.3.1 Node/v10.15.3";
+const userAgent = "@litexa/core/0.6.2 Node/v14.5.0";
 
 litexa.projectName = 'burrowClockSkill';
 var __languages = {};
 __languages['default'] = { enterState:{}, processIntents:{}, exitState:{}, dataTables:{} };
-__languages['es-mx'] = { enterState:{}, processIntents:{}, exitState:{}, dataTables:{} };
-litexa.sayMapping = [
-
-];
-litexa.dbTypes = {
-
+__languages['es-MX'] = { enterState:{}, processIntents:{}, exitState:{}, dataTables:{} };
+litexa.sayMapping = {
 };
 var jsonSourceFiles = {}; 
 jsonSourceFiles['package-lock.json'] = {
@@ -1034,12 +1034,7 @@ jsonSourceFiles['package-lock.json'] = {
       }
     },
     "burrowClockSkill-lib": {
-      "version": "file:../lib",
-      "requires": {
-        "fetch": "^1.1.0",
-        "pino": "5.10.6",
-        "pino-pretty": "2.5.0"
-      }
+      "version": "file:../lib"
     },
     "caseless": {
       "version": "0.12.0",
@@ -1356,7 +1351,7 @@ __languages.default.jsonFiles = {
   'package.json': jsonSourceFiles['package.json']
 };
 
-__languages['es-mx'].jsonFiles = {
+__languages['es-MX'].jsonFiles = {
   'package-lock.json': jsonSourceFiles['package-lock.json'],
   'package.json': jsonSourceFiles['package.json']
 };
@@ -1494,6 +1489,7 @@ handlerSteps.checkFastExit = function(event, handlerContext) {
       return db.fetchDB({
         identity: handlerContext.identity,
         dbKey,
+        ttlConfiguration: litexa.ttlConfiguration,
         fetchCallback: function(err, dbObject) {
           if (err != null) {
             return reject(err);
@@ -1529,18 +1525,18 @@ handlerSteps.runConcurrencyLoop = function(event, handlerContext) {
   // and support retrying all the logic after this point
   // in the event that the database layer detects a collision
   return new Promise(async function(resolve, reject) {
-    var lang, langCode, language, numberOfTries, ref9, requestTimeStamp, runHandler;
+    var __language, lang, langCode, language, numberOfTries, ref9, requestTimeStamp, runHandler;
     numberOfTries = 0;
     requestTimeStamp = (new Date((ref9 = event.request) != null ? ref9.timestamp : void 0)).getTime();
     // work out the language, from the locale, if it exists
     language = 'default';
     if (event.request.locale != null) {
-      lang = event.request.locale.toLowerCase();
+      lang = event.request.locale;
       langCode = lang.slice(0, 2);
-      if (lang in __languages) {
-        language = lang;
-      } else if (langCode in __languages) {
-        language = langCode;
+      for (__language in __languages) {
+        if ((lang.toLowerCase() === __language.toLowerCase()) || (langCode === __language)) {
+          language = __language;
+        }
       }
     }
     litexa.language = language;
@@ -1555,6 +1551,7 @@ handlerSteps.runConcurrencyLoop = function(event, handlerContext) {
       return db.fetchDB({
         identity: handlerContext.identity,
         dbKey,
+        ttlConfiguration: litexa.ttlConfiguration,
         fetchCallback: async function(err, dbObject) {
           var base, ref10, ref11, response, stateContext;
           try {
@@ -1816,7 +1813,7 @@ handlerSteps.walkStates = async function(stateContext) {
 };
 
 handlerSteps.createFinalResult = async function(stateContext) {
-  var card, content, d, err, events, extensionName, hasDisplay, joinSpeech, keep, parts, ref10, ref11, ref12, ref13, ref14, ref15, ref16, ref17, ref18, ref19, ref20, ref9, response, s, stripSSML, title, wrapper;
+  var card, content, d, err, events, extensionName, hasDisplay, joinSpeech, keep, parts, ref10, ref11, ref12, ref13, ref14, ref15, ref16, ref17, ref18, ref19, ref9, response, s, stripSSML, title, wrapper;
   stripSSML = function(line) {
     if (line == null) {
       return void 0;
@@ -1850,51 +1847,58 @@ handlerSteps.createFinalResult = async function(stateContext) {
     delete response.shouldEndSession;
   }
   // build outputSpeech and reprompt from the accumulators
-  joinSpeech = function(arr) {
-    var j, len, mapping, ref13, result;
-    result = arr.join(' ');
-    result = result.replace(/(  )/g, ' ');
-    ref13 = litexa.sayMapping;
+  joinSpeech = function(arr, language = 'default') {
+    var j, k, len, len1, line, mapping, ref13, ref14, result;
+    if (!arr) {
+      return '';
+    }
+    result = arr[0];
+    ref13 = arr.slice(1);
     for (j = 0, len = ref13.length; j < len; j++) {
-      mapping = ref13[j];
-      result = result.replace(mapping.test, mapping.change);
+      line = ref13[j];
+      // If the line starts with punctuation, don't add a space before.
+      if (line.match(/^[?!:;,.]/)) {
+        result += line;
+      } else {
+        result += ` ${line}`;
+      }
+    }
+    result = result.replace(/(  )/g, ' ');
+    if (litexa.sayMapping[language]) {
+      ref14 = litexa.sayMapping[language];
+      for (k = 0, len1 = ref14.length; k < len1; k++) {
+        mapping = ref14[k];
+        result = result.replace(mapping.from, mapping.to);
+      }
     }
     return result;
   };
   if ((stateContext.say != null) && stateContext.say.length > 0) {
     response.outputSpeech = {
       type: "SSML",
-      ssml: `<speak>${joinSpeech(stateContext.say)}</speak>`,
+      ssml: `<speak>${joinSpeech(stateContext.say, stateContext.language)}</speak>`,
       playBehavior: "REPLACE_ALL"
     };
   }
-  if (stateContext.repromptTheSay) {
-    stateContext.reprompt = (ref13 = stateContext.reprompt) != null ? ref13 : [];
+  if ((stateContext.reprompt != null) && stateContext.reprompt.length > 0) {
     response.reprompt = {
       outputSpeech: {
         type: "SSML",
-        ssml: `<speak>${joinSpeech(stateContext.reprompt)} ${joinSpeech(stateContext.say)}</speak>`
-      }
-    };
-  } else if ((stateContext.reprompt != null) && stateContext.reprompt.length > 0) {
-    response.reprompt = {
-      outputSpeech: {
-        type: "SSML",
-        ssml: `<speak>${joinSpeech(stateContext.reprompt)}</speak>`
+        ssml: `<speak>${joinSpeech(stateContext.reprompt, stateContext.language)}</speak>`
       }
     };
   }
   if (stateContext.card != null) {
     card = stateContext.card;
-    title = (ref14 = card.title) != null ? ref14 : "";
-    content = (ref15 = card.content) != null ? ref15 : "";
+    title = (ref13 = card.title) != null ? ref13 : "";
+    content = (ref14 = card.content) != null ? ref14 : "";
     if (card.repeatSpeech && (stateContext.say != null)) {
       parts = (function() {
-        var j, len, ref16, results;
-        ref16 = stateContext.say;
+        var j, len, ref15, results;
+        ref15 = stateContext.say;
         results = [];
-        for (j = 0, len = ref16.length; j < len; j++) {
-          s = ref16[j];
+        for (j = 0, len = ref15.length; j < len; j++) {
+          s = ref15[j];
           results.push(stripSSML(s));
         }
         return results;
@@ -1924,16 +1928,16 @@ handlerSteps.createFinalResult = async function(stateContext) {
     if (response.card.title.length > 0) {
       keep = true;
     }
-    if (((ref16 = response.card.text) != null ? ref16.length : void 0) > 0) {
+    if (((ref15 = response.card.text) != null ? ref15.length : void 0) > 0) {
       keep = true;
     }
-    if (((ref17 = response.card.content) != null ? ref17.length : void 0) > 0) {
+    if (((ref16 = response.card.content) != null ? ref16.length : void 0) > 0) {
       keep = true;
     }
-    if (((ref18 = response.card.image) != null ? ref18.smallImageUrl : void 0) != null) {
+    if (((ref17 = response.card.image) != null ? ref17.smallImageUrl : void 0) != null) {
       keep = true;
     }
-    if (((ref19 = response.card.image) != null ? ref19.largeImageUrl : void 0) != null) {
+    if (((ref18 = response.card.image) != null ? ref18.largeImageUrl : void 0) != null) {
       keep = true;
     }
     if (!keep) {
@@ -1941,7 +1945,7 @@ handlerSteps.createFinalResult = async function(stateContext) {
     }
   }
   if (stateContext.musicCommand != null) {
-    stateContext.directives = (ref20 = stateContext.directives) != null ? ref20 : [];
+    stateContext.directives = (ref19 = stateContext.directives) != null ? ref19 : [];
     switch (stateContext.musicCommand.action) {
       case 'play':
         stateContext.directives.push({
@@ -1973,11 +1977,11 @@ handlerSteps.createFinalResult = async function(stateContext) {
   stateContext.db.write("__settings", stateContext.settings);
   // filter out any directives that were marked for removal
   stateContext.directives = (function() {
-    var j, len, ref21, results;
-    ref21 = stateContext.directives;
+    var j, len, ref20, results;
+    ref20 = stateContext.directives;
     results = [];
-    for (j = 0, len = ref21.length; j < len; j++) {
-      d = ref21[j];
+    for (j = 0, len = ref20.length; j < len; j++) {
+      d = ref20[j];
       if (!d.DELETEME) {
         results.push(d);
       }
@@ -1986,6 +1990,10 @@ handlerSteps.createFinalResult = async function(stateContext) {
   })();
   if ((stateContext.directives != null) && stateContext.directives.length > 0) {
     response.directives = stateContext.directives;
+  }
+  // last chance, see if the developer left a postprocessor to run here
+  if (litexa.responsePostProcessor != null) {
+    litexa.responsePostProcessor(wrapper, stateContext);
   }
   return (await new Promise(function(resolve, reject) {
     return stateContext.db.finalize(function(err, info) {
@@ -2411,5 +2419,5 @@ exitState.searchName = async function(context) {
 
 
 
-})( __languages['es-mx'] );
+})( __languages['es-MX'] );
 

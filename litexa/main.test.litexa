@@ -1,36 +1,14 @@
 TEST "happy paths"
 
   launch
-  user: "find victoria"
-  @name == "victoria"
-  user: AMAZON.NoIntent
-  END
-
-  launch
-  user: AMAZON.YesIntent
-  user: AMAZON.NoIntent
-  END
-
-  launch
-  user: AMAZON.NoIntent
-  user: "find viviana"
-  user: AMAZON.NoIntent
-  END
-
-  launch
-  user: AMAZON.NoIntent
-  user: "find viviana"
-  user: AMAZON.YesIntent
   user: "find rodrigo"
+  @name == "rodrigo"
   user: AMAZON.NoIntent
   END
 
   launch
   user: AMAZON.NoIntent
-  user: "viviana"
-  user: "rodrigo"
-  user: "victoria"
-  user: "regina"
+  user: "find viviana"
   user: AMAZON.NoIntent
   END
 

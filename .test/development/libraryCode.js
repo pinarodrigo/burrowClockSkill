@@ -1,6 +1,7 @@
 var litexa = exports.litexa;
 if (typeof(litexa) === 'undefined') { litexa = {}; }
 if (typeof(litexa.modulesRoot) === 'undefined') { litexa.modulesRoot = process.cwd(); }
+litexa.DEPLOY = {};
 
 litexa.overridableFunctions = {
   generateDBKey: function(identity) {
@@ -448,7 +449,7 @@ DBTypeWrapper = class DBTypeWrapper {
         Object.setPrototypeOf(value, dbType.prototype);
       } else {
         // or construct a new instance
-        value = new dbType;
+        value = new dbType();
         this.db.write(name, value);
       }
     } else if ((dbType != null ? dbType.Prepare : void 0) != null) {
@@ -544,7 +545,7 @@ buildBuyInSkillProductDirective = async function(stateContext, referenceName) {
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildBuyInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildBuyInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
@@ -634,7 +635,7 @@ buildCancelInSkillProductDirective = async(stateContext, referenceName) => {
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildCancelInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildCancelInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
@@ -654,7 +655,7 @@ buildUpsellInSkillProductDirective = async(stateContext, referenceName, upsellMe
   var isp;
   isp = (await getProductByReferenceName(stateContext, referenceName));
   if (isp == null) {
-    console.log(`buildUpsellInSkillProductDirective(): in-skill product "${referenceName}" not found.`);
+    console.log(`buildUpsellInSkillProductDirective(): in-skill product \"${referenceName}\" not found.`);
     return;
   }
   stateContext.directives.push({
