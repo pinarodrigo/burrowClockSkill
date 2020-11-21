@@ -11,7 +11,7 @@ launch
 
 askForRelocate
   when AMAZON.YesIntent
-    local speechToText = callLocalizar(@name)
+    local speechToText = callLocalizar(@name,context)
     say "Locating @name, {speechToText}."
     card "Burrow Clock", map.png, "{speechToText}" 
     say "<...1s>"
@@ -48,7 +48,7 @@ waitForName
 
     # save the name in the permanent database
     @name = $name
-    local speechToText = callLocalizar(@name)
+    local speechToText = callLocalizar(@name,context)
     say "Locating @name, {speechToText}."
     card "Burrow Clock", map.png, "{speechToText}" 
     say "<...1s>"

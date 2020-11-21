@@ -4,7 +4,7 @@
       "versions": [
         {
           "lastDeployment": {
-            "date": "9/6/2020, 1:52:08 PM",
+            "date": "11/20/2020, 7:41:07 PM",
             "deploymentTypes": {
               "lambda": true,
               "assets": true,
@@ -12,9 +12,9 @@
               "manifest": true
             },
             "git": {
-              "currentCommitHash": "cbf3d804ff2d18b24857944ca6b835edf7027eed",
+              "currentCommitHash": "d9e9af2241aef155fd2d9f6a8d92ed0479d288db",
               "currentCommitComment": [
-                "Code optmizations for Askforanother"
+                "route calculation"
               ],
               "uncommittedChanges": [
                 "[modified] .deploy/development/assets.log",
@@ -25,54 +25,51 @@
                 "[modified] .deploy/development/manifest.log",
                 "[modified] .deploy/development/skill.json",
                 "[modified] .deploy/development/zip.out.log",
-                "[deleted] .test/lambda.js",
-                "[deleted] .test/libraryCode.js",
-                "[deleted] .test/model.json",
-                "[deleted] .test/output.json",
-                "[deleted] .test/output.log",
-                "[deleted] .test/project-config.json",
-                "[modified] .test/referenceTester.js",
-                "[deleted] .test/test.js",
+                "[modified] .test/development/lambda.js",
+                "[modified] .test/development/libraryCode.js",
+                "[modified] .test/development/output.json",
+                "[modified] .test/development/output.log",
+                "[modified] .test/development/project-config.json",
+                "[modified] .test/development/test.js",
                 "[modified] .test/utils.test.log",
                 "[modified] artifacts.json",
                 "[modified] lib/utils.js",
-                "[modified] litexa/main.test.litexa",
-                "[modified] litexa/package-lock.json",
-                "[modified] skill.js"
+                "[modified] litexa/languages/es-MX/main.litexa",
+                "[modified] litexa/main.litexa"
               ]
             },
-            "coreVersion": "0.6.2"
+            "coreVersion": "0.7.1"
           },
-          "assets-root": "https://s3.eu-central-1.amazonaws.com/litexa-skills/burrowClockSkill/development/",
+          "assets-root": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/",
           "deployedIconAssets": {
             "default": {
               "icon-108.png": {
-                "url": "https://s3.eu-central-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
                 "md5": "661e635ca0aabc8f51aa39af9edf69cc"
               },
               "icon-512.png": {
-                "url": "https://s3.eu-central-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png",
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png",
                 "md5": "300d90c2d2294ee39f4dce26c5618ad1"
               }
             },
             "es-MX": {
               "icon-108.png": {
-                "url": "https://s3.eu-central-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-108.png",
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-108.png",
                 "md5": "661e635ca0aabc8f51aa39af9edf69cc"
               },
               "icon-512.png": {
-                "url": "https://s3.eu-central-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-512.png",
+                "url": "https://s3.us-east-1.amazonaws.com/litexa-skills/burrowClockSkill/development/es-MX/icon-512.png",
                 "md5": "300d90c2d2294ee39f4dce26c5618ad1"
               }
             }
           },
           "dynamoDBARN": "arn:aws:dynamodb:eu-central-1:540845252871:table/burrowClockSkill_development_litexa_handler_state",
           "iamRole-litexa_handler_lambda": "arn:aws:iam::540845252871:role/litexa_handler_lambda",
-          "lambdaARN": "arn:aws:lambda:eu-central-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0",
+          "lambdaARN": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0",
           "skillId": "amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002",
           "skill-model-etag-en-US": "d83c50e8791bea87dfabf872fca967dd",
           "skill-manifest-assets-md5": "",
-          "skill-model-etag-es-MX": "838b70b3c65287baa3702070dc8b9940"
+          "skill-model-etag-es-MX": "fce8626433d86cd1c7a4564244652a56"
         }
       ]
     }

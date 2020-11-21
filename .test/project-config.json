@@ -1,6 +1,5 @@
 {
   "variant": "development",
-  "doNotParseExtensions": false,
   "name": "burrowClockSkill",
   "deployments": {
     "development": {
@@ -88,15 +87,13 @@
     "logPrefix": "[project info] ",
     "_verbose": false,
     "includeRunningTime": true,
-    "lastOutStreamTime": "2020-11-21T15:15:51.292Z",
-    "lastFileTime": "2020-11-21T15:15:51.292Z",
-    "startTime": "2020-11-21T15:15:51.292Z",
+    "lastOutStreamTime": "2020-10-23T14:13:43.156Z",
+    "lastFileTime": "2020-10-23T14:13:43.156Z",
+    "startTime": "2020-10-23T14:13:43.156Z",
     "_canWriteToFileStreamValid": true,
     "_canWriteToFileStream": false
   },
-  "DEPLOY": {},
-  "useSessionAttributesForPersistentStore": false,
-  "userAgent": "@litexa/core/0.7.1 Node/v10.16.0",
+  "userAgent": "@litexa/core/0.3.1 Node/v10.15.3",
   "extensions": {},
   "languages": {
     "default": {
@@ -144,9 +141,5 @@
     }
   },
   "languagesRoot": "/Users/rpn8fe/playground/burrowClockSkill/litexa/languages",
-  "localization": {
-    "intents": {},
-    "speech": {}
-  },
-  "testRoot": "/Users/rpn8fe/playground/burrowClockSkill/.test/development"
+  "testRoot": "/Users/rpn8fe/playground/burrowClockSkill/.test"
 }

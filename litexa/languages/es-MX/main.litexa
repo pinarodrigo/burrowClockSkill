@@ -43,7 +43,7 @@ askForAnother
     -> askForAnother
 
 searchName
-  local speechToText = callLocalizar(@name)
+  local speechToText = callLocalizar(@name, context)
   say "<!faltaba más.>"
   say "{speechToText}."
   card "Burrow Clock", map.png, "{speechToText}"

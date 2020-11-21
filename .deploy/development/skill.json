@@ -62,12 +62,12 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:eu-central-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+          "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
         },
         "regions": {
           "NA": {
             "endpoint": {
-              "uri": "arn:aws:lambda:eu-central-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+              "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
             }
           }
         },

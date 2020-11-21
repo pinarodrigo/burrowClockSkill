@@ -1,30 +1,26 @@
-11/21/2020, 4:15:54 PM
-✔ 4 tests run, all passed (2066ms)
+10/23/2020, 4:13:44 PM
+✔ 4 tests run, all passed (625ms)
 
-Testing in region en-US, language default out of ["default","es-MX"]
+Testing in region en-US, language default out of ["default","es-mx"]
 ✔ test: happy paths
 3.  ❢   LaunchRequest     @ 3:01:05 PM
-     ◖--waitForName---◗ "Whom do you want me to locate?" ... NO REPROMPT
+     ◖----------------◗ "Whom do you want me to locate?" ... NO REPROMPT
 4.  ❢     FIND_NAME      $name=rodrigo @ 3:02:10 PM
-     ◖-askForAnother--◗ "Locating rodrigo, rodrigo está a 19 metros de la casa, aproximadamente a 1 minutos caminando. <...1s> Do you want me to find someone else?" ... NO REPROMPT
+     ◖----------------◗ "Locating rodrigo, rodrigo está en casa. <...1s> Do you want me to find someone else?" ... NO REPROMPT
                           [CARD 0] Burrow Clock
      ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/route/rodrigo
-     ! {"userId":"amzn1.ask.account.stuff"}
-     ! {"deviceId":"someDeviceId","supportedInterfaces":[]}
-     ! Distance: 19, time: 0.5
 6.  ❢  AMAZON.NoIntent    @ 3:03:15 PM
      ◖----------------◗ "ok <...1s> Bye!" ... NO REPROMPT
   ◣  Voice session ended
 9.  ❢   LaunchRequest     @ 3:04:20 PM
-     ◖-askForRelocate-◗ "Do you want me to locate rodrigo?." ... NO REPROMPT
+     ◖----------------◗ "Do you want me to locate rodrigo?." ... NO REPROMPT
 10.  ❢  AMAZON.NoIntent    @ 3:05:25 PM
-     ◖--waitForName---◗ "Whom do you want me to find?" ... "Just tell me a name"
+     ◖----------------◗ "Whom do you want me to find?" ... "Just tell me a name"
 11.  ❢     FIND_NAME      $name=viviana @ 3:06:30 PM
-     ◖-askForAnother--◗ "Locating viviana, viviana está en casa. <...1s> Do you want me to find someone else?" ... NO REPROMPT
+     ◖----------------◗ "Locating viviana, viviana está a 443 metros de la casa, aproximadamente a 8 minutos caminando. <...1s> Do you want me to find someone else?" ... NO REPROMPT
                           [CARD 1] Burrow Clock
      ! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/route/viviana
-     ! {"userId":"amzn1.ask.account.stuff"}
-     ! {"deviceId":"someDeviceId","supportedInterfaces":[]}
+     ! Distance: 443, time: 8.133333333333333
 12.  ❢  AMAZON.NoIntent    @ 3:07:35 PM
      ◖----------------◗ "ok <...1s> Bye!" ... NO REPROMPT
   ◣  Voice session ended
@@ -33,7 +29,7 @@ Testing in region en-US, language default out of ["default","es-MX"]
 ✔ utils.test.js, 3 tests passed
   ✔ utils.test.js 'Utils'
   c! the arguments are [ 1, 2, 3 ]
-  t! today is Saturday
+  t! today is Friday
 
   ✔ utils.test.js 'Web Service'
   c! https://t7bes9gh71.execute-api.eu-central-1.amazonaws.com/dev/route/regina

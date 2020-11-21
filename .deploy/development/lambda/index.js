@@ -8,29 +8,12 @@ litexa.DEPLOY = {};
  * SPDX-License-Identifier: Apache-2.0
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  */
-var AWS, Entitlements, cloudWatch, db, dynamoDocClient;
+var AWS, Entitlements, cloudWatch;
 
 AWS = require('aws-sdk');
 
 AWS.config.update({
   region: "us-east-1"
-});
-
-//require('coffeescript').register()
-dynamoDocClient = new AWS.DynamoDB.DocumentClient({
-  convertEmptyValues: true,
-  service: new AWS.DynamoDB({
-    maxRetries: 5,
-    retryDelayOptions: {
-      base: 150
-    },
-    paramValidation: false,
-    httpOptions: {
-      agent: new (require('https')).Agent({
-        keepAlive: true
-      })
-    }
-  })
 });
 
 cloudWatch = new AWS.CloudWatch({
@@ -40,143 +23,6 @@ cloudWatch = new AWS.CloudWatch({
     })
   }
 });
-
-db = {
-  fetchDB: function({identity, dbKey, ttlConfiguration, fetchCallback}) {
-    var DBKEY, databaseObject, mock, params, ref, tableName;
-    if (true) {
-      tableName = typeof process !== "undefined" && process !== null ? (ref = process.env) != null ? ref.dynamoTableName : void 0 : void 0;
-      if (tableName == null) {
-        throw new Error("Missing dynamoTableName in the lambda environment. Please set it to the DynamoDB table you'd like to use, in the same AWS account.");
-      }
-      // we're using per application tables, already partitioned by deployment
-      // so all we need here is the device identifier
-      DBKEY = dbKey != null ? dbKey : `${identity.deviceId}`;
-      params = {
-        Key: {
-          userId: DBKEY
-        },
-        TableName: tableName,
-        ConsistentRead: true
-      };
-      //console.log 'fetching from DynamoDB : ' + JSON.stringify(params)
-      return dynamoDocClient.get(params, function(err, data) {
-        var backing, clock, databaseObject, dirty, lastResponseTime, ref1, ref2, ref3, ref4, wasInitialized;
-        if (err) {
-          console.error(`Unable to read from dynamo Request was: ${JSON.stringify(params, null, 2)} Error was: ${JSON.stringify(err, null, 2)}`);
-          return fetchCallback(err, null);
-        } else {
-          //console.log "fetched from DB", JSON.stringify(data.Item)
-          wasInitialized = ((ref1 = data.Item) != null ? ref1.data : void 0) != null;
-          backing = (ref2 = (ref3 = data.Item) != null ? ref3.data : void 0) != null ? ref2 : {};
-          if (data.Item != null) {
-            clock = (ref4 = data.Item.clock) != null ? ref4 : 0;
-            lastResponseTime = data.Item.lastResponseTime;
-          } else {
-            clock = null;
-            lastResponseTime = 0;
-          }
-          dirty = false;
-          databaseObject = {
-            isInitialized: function() {
-              return wasInitialized;
-            },
-            initialize: function() {
-              return wasInitialized = true;
-            },
-            read: function(key, markDirty) {
-              if (markDirty) {
-                dirty = true;
-              }
-              return backing[key];
-            },
-            write: function(key, value) {
-              backing[key] = value;
-              dirty = true;
-            },
-            finalize: function(finalizeCallback) {
-              var dispatchSave, ref5, requiredSpacing, space, wait;
-              if (!dirty) {
-                return setTimeout((function() {
-                  return finalizeCallback();
-                }), 1);
-              }
-              params = {
-                TableName: tableName,
-                Item: {
-                  userId: DBKEY,
-                  data: backing
-                }
-              };
-              if (true) {
-                if (clock != null) {
-                  // item existed, conditionally replace it
-                  if (clock > 0) {
-                    params.ConditionExpression = "clock = :expectedClock";
-                    params.ExpressionAttributeValues = {
-                      ":expectedClock": clock
-                    };
-                  }
-                  params.Item.clock = clock + 1;
-                } else {
-                  // item didn't exist, conditionally create it
-                  params.ConditionExpression = "attribute_not_exists(userId)";
-                  params.Item.clock = 0;
-                }
-              }
-              dispatchSave = function() {
-                //console.log "sending #{JSON.stringify(params)} to dynamo"
-                params.Item.lastResponseTime = (new Date()).getTime();
-                if (((ttlConfiguration != null ? ttlConfiguration.AttributeName : void 0) != null) && ((ttlConfiguration != null ? ttlConfiguration.secondsToLive : void 0) != null)) {
-                  params.Item[ttlConfiguration.AttributeName] = Math.round(params.Item.lastResponseTime / 1000 + ttlConfiguration.secondsToLive);
-                }
-                return dynamoDocClient.put(params, function(err, data) {
-                  if ((err != null ? err.code : void 0) === 'ConditionalCheckFailedException') {
-                    console.log(`DBCONDITION: ${err}`);
-                    databaseObject.repeatHandler = true;
-                    err = null;
-                  } else if (err != null) {
-                    console.error(`DBWRITEFAIL: ${err}`);
-                  }
-                  return finalizeCallback(err, params);
-                });
-              };
-              space = (new Date()).getTime() - lastResponseTime;
-              requiredSpacing = (ref5 = databaseObject.responseMinimumDelay) != null ? ref5 : 500;
-              if (space >= requiredSpacing) {
-                return dispatchSave();
-              } else {
-                wait = requiredSpacing - space;
-                console.log(`DELAYINGRESPONSE Spacing out ${wait}, ${(new Date()).getTime()} ${lastResponseTime}`);
-                return setTimeout(dispatchSave, wait);
-              }
-            }
-          };
-          return fetchCallback(null, databaseObject);
-        }
-      });
-    } else {
-      mock = {};
-      databaseObject = {
-        isInitialized: function() {
-          return true;
-        },
-        read: function(key) {
-          return mock[key];
-        },
-        write: function(key, value) {
-          return mock[key] = value;
-        },
-        finalize: function(cb) {
-          return setTimeout(cb, 1);
-        }
-      };
-      return setTimeout((function() {
-        return fetchCallback(null, databaseObject);
-      }), 1);
-    }
-  }
-};
 
 Entitlements = {
   fetchAll: function(event, stateContext, after) {
@@ -226,6 +72,147 @@ Entitlements = {
   }
 };
 
+/*
+ * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ */
+var db, dynamoDocClient;
+
+dynamoDocClient = new AWS.DynamoDB.DocumentClient({
+  convertEmptyValues: true,
+  service: new AWS.DynamoDB({
+    maxRetries: 5,
+    retryDelayOptions: {
+      base: 150
+    },
+    paramValidation: false,
+    httpOptions: {
+      agent: new (require('https')).Agent({
+        keepAlive: true
+      })
+    }
+  })
+});
+
+db = {
+  fetchDB: function({identity, dbKey, fetchCallback}) {
+    var DBKEY, params, ref, tableName, ttlConfiguration;
+    ttlConfiguration = litexa.ttlConfiguration;
+    tableName = typeof process !== "undefined" && process !== null ? (ref = process.env) != null ? ref.dynamoTableName : void 0 : void 0;
+    if (tableName == null) {
+      throw new Error("Missing dynamoTableName in the lambda environment. Please set it to the DynamoDB table you'd like to use, in the same AWS account.");
+    }
+    // we're using per application tables, already partitioned by deployment
+    // so all we need here is the device identifier
+    DBKEY = dbKey != null ? dbKey : `${identity.deviceId}`;
+    params = {
+      Key: {
+        userId: DBKEY
+      },
+      TableName: tableName,
+      ConsistentRead: true
+    };
+    //console.log 'fetching from DynamoDB : ' + JSON.stringify(params)
+    return dynamoDocClient.get(params, function(err, data) {
+      var backing, clock, databaseObject, dirty, lastResponseTime, ref1, ref2, ref3, ref4, wasInitialized;
+      if (err) {
+        console.error(`Unable to read from dynamo Request was: ${JSON.stringify(params, null, 2)} Error was: ${JSON.stringify(err, null, 2)}`);
+        return fetchCallback(err, null);
+      } else {
+        //console.log "fetched from DB", JSON.stringify(data.Item)
+        wasInitialized = ((ref1 = data.Item) != null ? ref1.data : void 0) != null;
+        backing = (ref2 = (ref3 = data.Item) != null ? ref3.data : void 0) != null ? ref2 : {};
+        if (data.Item != null) {
+          clock = (ref4 = data.Item.clock) != null ? ref4 : 0;
+          lastResponseTime = data.Item.lastResponseTime;
+        } else {
+          clock = null;
+          lastResponseTime = 0;
+        }
+        dirty = false;
+        databaseObject = {
+          isInitialized: function() {
+            return wasInitialized;
+          },
+          initialize: function() {
+            return wasInitialized = true;
+          },
+          read: function(key, markDirty) {
+            if (markDirty) {
+              dirty = true;
+            }
+            return backing[key];
+          },
+          write: function(key, value) {
+            backing[key] = value;
+            dirty = true;
+          },
+          finalize: function(finalizeCallback) {
+            var dispatchSave, ref5, requiredSpacing, space, wait;
+            if (!dirty) {
+              return setTimeout((function() {
+                return finalizeCallback();
+              }), 1);
+            }
+            params = {
+              TableName: tableName,
+              Item: {
+                userId: DBKEY,
+                data: backing
+              }
+            };
+            if (true) {
+              if (clock != null) {
+                // item existed, conditionally replace it
+                if (clock > 0) {
+                  params.ConditionExpression = "clock = :expectedClock";
+                  params.ExpressionAttributeValues = {
+                    ":expectedClock": clock
+                  };
+                }
+                params.Item.clock = clock + 1;
+              } else {
+                // item didn't exist, conditionally create it
+                params.ConditionExpression = "attribute_not_exists(userId)";
+                params.Item.clock = 0;
+              }
+            }
+            dispatchSave = function() {
+              //console.log "sending #{JSON.stringify(params)} to dynamo"
+              params.Item.lastResponseTime = (new Date()).getTime();
+              if (((ttlConfiguration != null ? ttlConfiguration.AttributeName : void 0) != null) && ((ttlConfiguration != null ? ttlConfiguration.secondsToLive : void 0) != null)) {
+                params.Item[ttlConfiguration.AttributeName] = Math.round(params.Item.lastResponseTime / 1000 + ttlConfiguration.secondsToLive);
+              }
+              return dynamoDocClient.put(params, function(err, data) {
+                if ((err != null ? err.code : void 0) === 'ConditionalCheckFailedException') {
+                  console.log(`DBCONDITION: ${err}`);
+                  databaseObject.repeatHandler = true;
+                  err = null;
+                } else if (err != null) {
+                  console.error(`DBWRITEFAIL: ${err}`);
+                }
+                return finalizeCallback(err, params);
+              });
+            };
+            space = (new Date()).getTime() - lastResponseTime;
+            requiredSpacing = (ref5 = databaseObject.responseMinimumDelay) != null ? ref5 : 500;
+            if (space >= requiredSpacing) {
+              return dispatchSave();
+            } else {
+              wait = requiredSpacing - space;
+              console.log(`DELAYINGRESPONSE Spacing out ${wait}, ${(new Date()).getTime()} ${lastResponseTime}`);
+              return setTimeout(dispatchSave, wait);
+            }
+          }
+        };
+        return fetchCallback(null, databaseObject);
+      }
+    });
+  }
+};
+
 litexa.overridableFunctions = {
   generateDBKey: function(identity) {
     return `${identity.deviceId}`;
@@ -237,7 +224,7 @@ litexa.overridableFunctions = {
    * SPDX-License-Identifier: Apache-2.0
    * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    */
-var DBTypeWrapper, brightenColor, buildBuyInSkillProductDirective, buildCancelInSkillProductDirective, buildUpsellInSkillProductDirective, daysBetween, deepClone, diceCheck, diceRoll, escapeSpeech, fetchEntitlements, getProductByProductId, getProductByReferenceName, getReferenceNameByProductId, hexFromRGB, hoursBetween, inSkillProductBought, interpolateRGB, isActuallyANumber, minutesBetween, pickSayString, randomArrayItem, randomIndex, reportValueMetric, rgbFromHSL, rgbFromHex, shuffleArray,
+var DBTypeWrapper, brightenColor, buildBuyInSkillProductDirective, buildCancelInSkillProductDirective, buildUpsellInSkillProductDirective, daysBetween, deepClone, diceCheck, diceRoll, escapeSpeech, fetchEntitlements, getProductByProductId, getProductByReferenceName, getReferenceNameByProductId, hexFromRGB, hoursBetween, inSkillProductBought, interpolateRGB, isActuallyANumber, minutesBetween, pickSayFragment, pickSayString, randomArrayItem, randomIndex, reportValueMetric, rgbFromHSL, rgbFromHex, shuffleArray,
   indexOf = [].indexOf;
 
 randomIndex = function(count) {
@@ -307,7 +294,7 @@ pickSayString = function(context, key, count) {
       } else {
         value = randomIndex(2);
       }
-      history[0] = value;
+      history[0] = value % 2;
       break;
     case !(count < 5):
       // until 4, the pattern below is a little
@@ -319,7 +306,7 @@ pickSayString = function(context, key, count) {
       if (value === history[0]) {
         value = (value + 1) % count;
       }
-      history[0] = value;
+      history[0] = value % 5;
       break;
     default:
       // otherwise, guarantee we'll see at least
@@ -339,7 +326,13 @@ pickSayString = function(context, key, count) {
   }
   sayData[key] = history;
   context.db.write('__sayHistory', sayData);
-  return value;
+  return value % count;
+};
+
+pickSayFragment = function(context, key, options) {
+  var index;
+  index = pickSayString(context, key, options.length);
+  return options[index];
 };
 
 exports.DataTablePrototype = {
@@ -971,7 +964,7 @@ litexa.extendedEventNames = [];
 // END OF LIBRARY CODE
 
 // version summary
-const userAgent = "@litexa/core/0.6.2 Node/v14.5.0";
+const userAgent = "@litexa/core/0.7.1 Node/v10.16.0";
 
 litexa.projectName = 'burrowClockSkill';
 var __languages = {};
@@ -1362,7 +1355,7 @@ __languages['es-MX'].jsonFiles = {
    * SPDX-License-Identifier: Apache-2.0
    * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    */
-var enableStateTracing, handlerSteps, logStateTraces, loggingLevel, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, shouldUniqueURLs,
+var enableStateTracing, getLanguage, handlerSteps, logStateTraces, loggingLevel, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, shouldUniqueURLs,
   indexOf = [].indexOf;
 
 // causes every request and response object to be written to the logs
@@ -1464,6 +1457,22 @@ handlerSteps.extractIdentity = function(event, handlerContext) {
   });
 };
 
+getLanguage = function(event) {
+  var __language, lang, langCode, language;
+  // work out the language, from the locale, if it exists
+  language = 'default';
+  if (event.request.locale != null) {
+    lang = event.request.locale;
+    langCode = lang.slice(0, 2);
+    for (__language in __languages) {
+      if ((lang.toLowerCase() === __language.toLowerCase()) || (langCode === __language)) {
+        language = __language;
+      }
+    }
+  }
+  return language;
+};
+
 handlerSteps.checkFastExit = function(event, handlerContext) {
   var terminalEvent;
   // detect fast exit for valid events we don't route yet, or have no response to
@@ -1482,26 +1491,38 @@ handlerSteps.checkFastExit = function(event, handlerContext) {
   // this is an event that ends the session, but we may have code
   // that needs to cleanup on skill exist that result in a BD write
   return new Promise(function(resolve, reject) {
-    var tryToClose;
+    var originalSessionAttributes, tryToClose;
+    originalSessionAttributes = JSON.parse(JSON.stringify(event.session.attributes));
     tryToClose = function() {
       var dbKey;
       dbKey = litexa.overridableFunctions.generateDBKey(handlerContext.identity);
       return db.fetchDB({
         identity: handlerContext.identity,
         dbKey,
-        ttlConfiguration: litexa.ttlConfiguration,
+        sessionAttributes: originalSessionAttributes,
         fetchCallback: function(err, dbObject) {
+          var language, ref10, ref11, ref9, stateContext;
           if (err != null) {
             return reject(err);
           }
-          // todo, insert any new skill cleanup code here
-          //   check to see if dbObject needs flushing
-
+          language = getLanguage(event);
+          if (litexa.sessionTerminatingCallback != null) {
+            stateContext = {
+              now: (new Date((ref9 = event.request) != null ? ref9.timestamp : void 0)).getTime(),
+              requestId: event.request.requestId,
+              language: language,
+              event: event,
+              request: (ref10 = event != null ? event.request : void 0) != null ? ref10 : {},
+              db: new DBTypeWrapper(dbObject, language),
+              sessionAttributes: event != null ? (ref11 = event.session) != null ? ref11.attributes : void 0 : void 0
+            };
+            litexa.sessionTerminatingCallback(stateContext);
+          }
+          
           // all clear, we don't have anything active
           if (loggingLevel) {
             exports.Logging.log("VERBOSE Terminating input handler early");
           }
-          return resolve(false);
           // write back the object, to clear our memory
           return dbObject.finalize(function(err) {
             if (err != null) {
@@ -1525,33 +1546,24 @@ handlerSteps.runConcurrencyLoop = function(event, handlerContext) {
   // and support retrying all the logic after this point
   // in the event that the database layer detects a collision
   return new Promise(async function(resolve, reject) {
-    var __language, lang, langCode, language, numberOfTries, ref9, requestTimeStamp, runHandler;
+    var language, numberOfTries, ref9, requestTimeStamp, runHandler;
     numberOfTries = 0;
     requestTimeStamp = (new Date((ref9 = event.request) != null ? ref9.timestamp : void 0)).getTime();
-    // work out the language, from the locale, if it exists
-    language = 'default';
-    if (event.request.locale != null) {
-      lang = event.request.locale;
-      langCode = lang.slice(0, 2);
-      for (__language in __languages) {
-        if ((lang.toLowerCase() === __language.toLowerCase()) || (langCode === __language)) {
-          language = __language;
-        }
-      }
-    }
+    language = getLanguage(event);
     litexa.language = language;
     handlerContext.identity.litexaLanguage = language;
     runHandler = function() {
-      var dbKey;
+      var dbKey, sessionAttributes;
       numberOfTries += 1;
       if (numberOfTries > 1) {
         exports.Logging.log(`CONCURRENCY LOOP iteration ${numberOfTries}, denied db write`);
       }
       dbKey = litexa.overridableFunctions.generateDBKey(handlerContext.identity);
+      sessionAttributes = JSON.parse(JSON.stringify(event.session.attributes));
       return db.fetchDB({
         identity: handlerContext.identity,
         dbKey,
-        ttlConfiguration: litexa.ttlConfiguration,
+        sessionAttributes: sessionAttributes,
         fetchCallback: async function(err, dbObject) {
           var base, ref10, ref11, response, stateContext;
           try {
@@ -1568,7 +1580,8 @@ handlerSteps.runConcurrencyLoop = function(event, handlerContext) {
               language: language,
               event: event,
               request: (ref10 = event.request) != null ? ref10 : {},
-              db: new DBTypeWrapper(dbObject, language)
+              db: new DBTypeWrapper(dbObject, language),
+              sessionAttributes: sessionAttributes
             };
             stateContext.settings = (ref11 = stateContext.db.read("__settings")) != null ? ref11 : {
               resetOnLaunch: true
@@ -1579,6 +1592,9 @@ handlerSteps.runConcurrencyLoop = function(event, handlerContext) {
             }
             await handlerSteps.parseRequestData(stateContext);
             await handlerSteps.initializeMonetization(stateContext, event);
+            if (!stateContext.currentState && stateContext.handoffState) {
+              await handlerSteps.enterLaunchHandoffState(stateContext);
+            }
             await handlerSteps.routeIncomingIntent(stateContext);
             await handlerSteps.walkStates(stateContext);
             response = (await handlerSteps.createFinalResult(stateContext));
@@ -1634,6 +1650,7 @@ handlerSteps.parseRequestData = function(stateContext) {
         incomingState = 'launch';
         stateContext.currentState = null;
       }
+      // honor resetOnLaunch
       isColdLaunch = request.type === 'LaunchRequest' || ((ref10 = stateContext.event.session) != null ? ref10.new : void 0);
       if (stateContext.settings.resetOnLaunch && isColdLaunch) {
         incomingState = 'launch';
@@ -1667,6 +1684,7 @@ handlerSteps.parseRequestData = function(stateContext) {
       }
       break;
     case 'Connections.Response':
+      stateContext.intent = 'Connections.Response';
       stateContext.handoffIntent = true;
       // if we get this and we're not in progress,
       // then reroute to the launch state
@@ -1704,7 +1722,7 @@ handlerSteps.parseRequestData = function(stateContext) {
 };
 
 handlerSteps.initializeMonetization = function(stateContext, event) {
-  var attributes, ref10, ref11, ref9;
+  var attributes, ref10, ref9;
   stateContext.monetization = stateContext.db.read("__monetization");
   if (stateContext.monetization == null) {
     stateContext.monetization = {
@@ -1719,13 +1737,24 @@ handlerSteps.initializeMonetization = function(stateContext, event) {
     stateContext.monetization.fetchEntitlements = true;
     stateContext.db.write("__monetization", stateContext.monetization);
   }
-  if (((ref11 = event.request) != null ? ref11.type : void 0) === 'Connections.Response') {
-    stateContext.intent = 'Connections.Response';
-    stateContext.handoffIntent = true;
-    stateContext.handoffState = 'launch';
-    stateContext.nextState = 'launch';
-  }
   return Promise.resolve();
+};
+
+handlerSteps.enterLaunchHandoffState = async function(stateContext) {
+  var item, state;
+  state = stateContext.handoffState;
+  if (!(state in __languages[stateContext.language].enterState)) {
+    throw new Error(`Entering an unknown state \`${state}\``);
+  }
+  await __languages[stateContext.language].enterState[state](stateContext);
+  stateContext.currentState = stateContext.handoffState;
+  if (enableStateTracing) {
+    stateContext.traceHistory.push(stateContext.handoffState);
+  }
+  if (logStateTraces) {
+    item = `enter (at launch) ${stateContext.handoffState}`;
+    return exports.Logging.log("STATETRACE " + item);
+  }
 };
 
 handlerSteps.routeIncomingIntent = async function(stateContext) {
@@ -1771,16 +1800,28 @@ handlerSteps.walkStates = async function(stateContext) {
   // keep processing state transitions until we're done
   MaximumTransitionCount = 500;
   for (i = j = 0, ref9 = MaximumTransitionCount; (0 <= ref9 ? j < ref9 : j > ref9); i = 0 <= ref9 ? ++j : --j) {
+    // prime the next transition
     nextState = stateContext.nextState;
-    stateContext.nextState = null;
+    // stop if there isn't one
     if (!nextState) {
       return;
     }
+    // run the exit handler if there is one
     lastState = stateContext.currentState;
-    stateContext.currentState = nextState;
     if (lastState != null) {
       await __languages[stateContext.language].exitState[lastState](stateContext);
     }
+    // check in case the exit handler caused a redirection
+    nextState = stateContext.nextState;
+    if (!nextState) {
+      return;
+    }
+    // the state transition resets the next transition state
+    // and implies that we'll go back to opening the mic
+    stateContext.nextState = null;
+    stateContext.shouldEndSession = false;
+    delete stateContext.shouldDropSession;
+    stateContext.currentState = nextState;
     if (enableStateTracing) {
       stateContext.traceHistory.push(nextState);
     }
@@ -1798,6 +1839,7 @@ handlerSteps.walkStates = async function(stateContext) {
         stateContext.traceHistory.push(stateContext.handoffState);
       }
       if (logStateTraces) {
+        item = `drain intent ${stateContext.intent} in ${stateContext.handoffState}`;
         exports.Logging.log("STATETRACE " + item);
       }
       await (typeof (base = __languages[stateContext.language].processIntents)[name1 = stateContext.handoffState] === "function" ? base[name1](stateContext) : void 0);
@@ -1836,7 +1878,7 @@ handlerSteps.createFinalResult = async function(stateContext) {
   // start building the final response json object
   wrapper = {
     version: "1.0",
-    sessionAttributes: {},
+    sessionAttributes: stateContext.sessionAttributes,
     userAgent: userAgent, // this userAgent value is generated in project-info.coffee and injected in skill.coffee
     response: {
       shouldEndSession: stateContext.shouldEndSession
@@ -1982,7 +2024,7 @@ handlerSteps.createFinalResult = async function(stateContext) {
     results = [];
     for (j = 0, len = ref20.length; j < len; j++) {
       d = ref20[j];
-      if (!d.DELETEME) {
+      if (!(d != null ? d.DELETEME : void 0)) {
         results.push(d);
       }
     }
@@ -1994,6 +2036,11 @@ handlerSteps.createFinalResult = async function(stateContext) {
   // last chance, see if the developer left a postprocessor to run here
   if (litexa.responsePostProcessor != null) {
     litexa.responsePostProcessor(wrapper, stateContext);
+  }
+  if (stateContext.shouldEndSession && (litexa.sessionTerminatingCallback != null)) {
+    // we're about to quit, won't get session ended, 
+    // so this counts as the very last moment in this session
+    litexa.sessionTerminatingCallback(stateContext);
   }
   return (await new Promise(function(resolve, reject) {
     return stateContext.db.finalize(function(err, info) {
@@ -2030,11 +2077,15 @@ __language.dbTypes = {
 };
 enterState.launch = async function(context) {
   if (context.db.read('name')) {
-    context.say.push( "Do you want me to locate " + escapeSpeech( context.db.read('name') ) + "?." );
+    context.say.push( ("Do you want me to locate " + escapeSpeech( context.db.read('name') ) + "?.").trim().replace(/ +/g,' ') );
+    delete context.shouldEndSession;
+    delete context.shouldDropSession;
     context.nextState = 'askForRelocate';
   }
   else {
-    context.say.push( "Whom do you want me to locate?" );
+    context.say.push( ("Whom do you want me to locate?").trim().replace(/ +/g,' ') );
+    delete context.shouldEndSession;
+    delete context.shouldDropSession;
     context.nextState = 'waitForName';
   }
 };
@@ -2060,14 +2111,24 @@ processIntents.global = async function(context, runOtherwise) {
       break;
     }
     case 'AMAZON.StopIntent': {
+      context.nextState = null;
+      context.handoffState = null;
+      context.handoffIntent = null;
+      delete context.shouldDropSession;
       context.shouldEndSession = true;
       break;
     }
     case 'AMAZON.CancelIntent': {
+      context.nextState = null;
+      context.handoffState = null;
+      context.handoffIntent = null;
+      delete context.shouldDropSession;
       context.shouldEndSession = true;
       break;
     }
     case 'AMAZON.StartOverIntent': {
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'launch';
       break;
     }
@@ -2086,8 +2147,8 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
       break;
     }
     case 'AMAZON.YesIntent': {
-      let speechToText = await callLocalizar(context.db.read('name'));
-      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + "." );
+      let speechToText = await callLocalizar(context.db.read('name'), context);
+      context.say.push( ("Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + ".").trim().replace(/ +/g,' ') );
       context.card = {
         title: "Burrow Clock",
         content: escapeSpeech( (speechToText) ),
@@ -2096,14 +2157,18 @@ processIntents.askForRelocate = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.say.push( "<break time='1s'/>" );
-      context.say.push( "Do you want me to find someone else?" );
+      context.say.push( ("<break time='1s'/>").trim().replace(/ +/g,' ') );
+      context.say.push( ("Do you want me to find someone else?").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "Whom do you want me to find?" );
-      context.reprompt.push( "Just tell me a name" );
+      context.say.push( ("Whom do you want me to find?").trim().replace(/ +/g,' ') );
+      context.reprompt.push( ("Just tell me a name").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'waitForName';
       break;
     }
@@ -2122,13 +2187,17 @@ processIntents.askForAnother = async function(context, runOtherwise) {
       break;
     }
     case 'AMAZON.YesIntent': {
-      context.say.push( "Whom do you want me to find?" );
+      context.say.push( ("Whom do you want me to find?").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'waitForName';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "ok" );
-      context.say.push( "<break time='1s'/>" );
+      context.say.push( ("ok").trim().replace(/ +/g,' ') );
+      context.say.push( ("<break time='1s'/>").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'goodbye';
       break;
     }
@@ -2144,14 +2213,16 @@ processIntents.waitForName = async function(context, runOtherwise) {
   switch( context.intent ) {
     default: {
       if ( await processIntents.global(context, false) ) { return true; }
-      context.say.push( "Do you want me to find " + escapeSpeech( context.db.read('name') ) + "?." );
+      context.say.push( ("Do you want me to find " + escapeSpeech( context.db.read('name') ) + "?.").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForRelocate';
       break;
     }
     case 'FIND_NAME': {
       context.db.write('name', context.slots.name);
-      let speechToText = await callLocalizar(context.db.read('name'));
-      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + "." );
+      let speechToText = await callLocalizar(context.db.read('name'), context);
+      context.say.push( ("Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + ".").trim().replace(/ +/g,' ') );
       context.card = {
         title: "Burrow Clock",
         content: escapeSpeech( (speechToText) ),
@@ -2160,13 +2231,17 @@ processIntents.waitForName = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.say.push( "<break time='1s'/>" );
-      context.say.push( "Do you want me to find someone else?" );
+      context.say.push( ("<break time='1s'/>").trim().replace(/ +/g,' ') );
+      context.say.push( ("Do you want me to find someone else?").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.HelpIntent': {
-      context.say.push( "Just tell me the name of the person you want to find" );
+      context.say.push( ("Just tell me the name of the person you want to find").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'waitForName';
       break;
     }
@@ -2177,7 +2252,11 @@ exitState.waitForName = async function(context) {
 };
 
 enterState.goodbye = async function(context) {
-  context.say.push( "Bye!" );
+  context.say.push( ("Bye!").trim().replace(/ +/g,' ') );
+  context.nextState = null;
+  context.handoffState = null;
+  context.handoffIntent = null;
+  delete context.shouldDropSession;
   context.shouldEndSession = true;
 };
 processIntents.goodbye = async function(context, runOtherwise) {
@@ -2236,11 +2315,15 @@ __language.dbTypes = {
 };
 enterState.launch = async function(context) {
   if (context.db.read('name')) {
-    context.say.push( "¿Quieres que localice a " + escapeSpeech( context.db.read('name') ) + "?." );
+    context.say.push( ("¿Quieres que localice a " + escapeSpeech( context.db.read('name') ) + "?.").trim().replace(/ +/g,' ') );
+    delete context.shouldEndSession;
+    delete context.shouldDropSession;
     context.nextState = 'askForRelocate';
   }
   else {
-    context.say.push( "¿A quién quieres que localice?" );
+    context.say.push( ("¿A quién quieres que localice?").trim().replace(/ +/g,' ') );
+    delete context.shouldEndSession;
+    delete context.shouldDropSession;
     context.nextState = 'askForAnother';
   }
 };
@@ -2262,14 +2345,24 @@ processIntents.global = async function(context, runOtherwise) {
       break;
     }
     case 'AMAZON.StopIntent': {
+      context.nextState = null;
+      context.handoffState = null;
+      context.handoffIntent = null;
+      delete context.shouldDropSession;
       context.shouldEndSession = true;
       break;
     }
     case 'AMAZON.CancelIntent': {
+      context.nextState = null;
+      context.handoffState = null;
+      context.handoffIntent = null;
+      delete context.shouldDropSession;
       context.shouldEndSession = true;
       break;
     }
     case 'AMAZON.StartOverIntent': {
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'launch';
       break;
     }
@@ -2284,12 +2377,16 @@ enterState.askForRelocate = async function(context) {
 processIntents.askForRelocate = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'AMAZON.YesIntent': {
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'searchName';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "¿A quién quieres que localice?" );
-      context.reprompt.push( "Solo dime un nombre" );
+      context.say.push( ("¿A quién quieres que localice?").trim().replace(/ +/g,' ') );
+      context.reprompt.push( ("Solo dime un nombre").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
@@ -2305,22 +2402,30 @@ processIntents.askForAnother = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'A_ANOTHERNAME': {
       context.db.write('name', context.slots.anotherName);
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'searchName';
       break;
     }
     case 'AMAZON.YesIntent': {
-      context.say.push( "<say-as interpret-as='interjection'>perfecto.</say-as>" + " ¿A quién quieres que localice?" );
+      context.say.push( ("<say-as interpret-as='interjection'>perfecto.</say-as>" + " ¿A quién quieres que localice?").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.NoIntent': {
-      context.say.push( "<say-as interpret-as='interjection'>chido.</say-as>" );
+      context.say.push( ("<say-as interpret-as='interjection'>chido.</say-as>").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'goodbye';
       break;
     }
     case 'AMAZON.HelpIntent': {
-      context.say.push( "<say-as interpret-as='interjection'>no hay problema.</say-as>" );
-      context.say.push( "Solo dime el nombre de la persona que quieres localizar" );
+      context.say.push( ("<say-as interpret-as='interjection'>no hay problema.</say-as>").trim().replace(/ +/g,' ') );
+      context.say.push( ("Solo dime el nombre de la persona que quieres localizar").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
@@ -2336,14 +2441,16 @@ processIntents.waitForName = async function(context, runOtherwise) {
   switch( context.intent ) {
     default: {
       if ( await processIntents.global(context, false) ) { return true; }
-      context.say.push( "Do you want me to find " + escapeSpeech( context.db.read('name') ) + "?." );
+      context.say.push( ("Do you want me to find " + escapeSpeech( context.db.read('name') ) + "?.").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForRelocate';
       break;
     }
     case 'FIND_NAME': {
       context.db.write('name', context.slots.name);
-      let speechToText = await callLocalizar(context.db.read('name'));
-      context.say.push( "Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + "." );
+      let speechToText = await callLocalizar(context.db.read('name'), context);
+      context.say.push( ("Locating " + escapeSpeech( context.db.read('name') ) + ", " + escapeSpeech( (speechToText) ) + ".").trim().replace(/ +/g,' ') );
       context.card = {
         title: "Burrow Clock",
         content: escapeSpeech( (speechToText) ),
@@ -2352,13 +2459,17 @@ processIntents.waitForName = async function(context, runOtherwise) {
         cardSmall:  litexa.assetsRoot + "default/map.png" , 
         cardLarge:  litexa.assetsRoot + "default/map.png" , 
       };
-      context.say.push( "<break time='1s'/>" );
-      context.say.push( "Do you want me to find someone else?" );
+      context.say.push( ("<break time='1s'/>").trim().replace(/ +/g,' ') );
+      context.say.push( ("Do you want me to find someone else?").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
     case 'AMAZON.HelpIntent': {
-      context.say.push( "Just tell me the name of the person you want to find" );
+      context.say.push( ("Just tell me the name of the person you want to find").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'waitForName';
       break;
     }
@@ -2369,7 +2480,11 @@ exitState.waitForName = async function(context) {
 };
 
 enterState.goodbye = async function(context) {
-  context.say.push( "<say-as interpret-as='interjection'>nos vemos.</say-as>" );
+  context.say.push( ("<say-as interpret-as='interjection'>nos vemos.</say-as>").trim().replace(/ +/g,' ') );
+  context.nextState = null;
+  context.handoffState = null;
+  context.handoffIntent = null;
+  delete context.shouldDropSession;
   context.shouldEndSession = true;
 };
 processIntents.goodbye = async function(context, runOtherwise) {
@@ -2381,9 +2496,9 @@ exitState.goodbye = async function(context) {
 };
 
 enterState.searchName = async function(context) {
-  let speechToText = await callLocalizar(context.db.read('name'));
-  context.say.push( "<say-as interpret-as='interjection'>faltaba más.</say-as>" );
-  context.say.push( escapeSpeech( (speechToText) ) + "." );
+  let speechToText = await callLocalizar(context.db.read('name'), context);
+  context.say.push( ("<say-as interpret-as='interjection'>faltaba más.</say-as>").trim().replace(/ +/g,' ') );
+  context.say.push( (escapeSpeech( (speechToText) ) + ".").trim().replace(/ +/g,' ') );
   context.card = {
     title: "Burrow Clock",
     content: escapeSpeech( (speechToText) ),
@@ -2392,20 +2507,26 @@ enterState.searchName = async function(context) {
     cardSmall:  litexa.assetsRoot + "default/map.png" , 
     cardLarge:  litexa.assetsRoot + "default/map.png" , 
   };
-  context.say.push( "¿Quieres localizar a alguien más?" );
+  context.say.push( ("¿Quieres localizar a alguien más?").trim().replace(/ +/g,' ') );
+  delete context.shouldEndSession;
+  delete context.shouldDropSession;
   context.nextState = 'askForAnother';
 };
 processIntents.searchName = async function(context, runOtherwise) {
   switch( context.intent ) {
     case 'AMAZON.HelpIntent': {
-      context.say.push( "<say-as interpret-as='interjection'>no hay problema.</say-as>" );
-      context.say.push( "Solo dime el nombre de la persona que quieres localizar" );
+      context.say.push( ("<say-as interpret-as='interjection'>no hay problema.</say-as>").trim().replace(/ +/g,' ') );
+      context.say.push( ("Solo dime el nombre de la persona que quieres localizar").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForAnother';
       break;
     }
     default: {
       if ( await processIntents.global(context, false) ) { return true; }
-      context.say.push( "¿Quieres que localice a " + escapeSpeech( context.db.read('name') ) + "?." );
+      context.say.push( ("¿Quieres que localice a " + escapeSpeech( context.db.read('name') ) + "?.").trim().replace(/ +/g,' ') );
+      delete context.shouldEndSession;
+      delete context.shouldDropSession;
       context.nextState = 'askForRelocate';
       break;
     }

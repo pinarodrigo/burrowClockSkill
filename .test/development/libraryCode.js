@@ -14,7 +14,7 @@ litexa.overridableFunctions = {
    * SPDX-License-Identifier: Apache-2.0
    * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    */
-var DBTypeWrapper, brightenColor, buildBuyInSkillProductDirective, buildCancelInSkillProductDirective, buildUpsellInSkillProductDirective, daysBetween, deepClone, diceCheck, diceRoll, escapeSpeech, fetchEntitlements, getProductByProductId, getProductByReferenceName, getReferenceNameByProductId, hexFromRGB, hoursBetween, inSkillProductBought, interpolateRGB, isActuallyANumber, minutesBetween, pickSayString, randomArrayItem, randomIndex, reportValueMetric, rgbFromHSL, rgbFromHex, shuffleArray,
+var DBTypeWrapper, brightenColor, buildBuyInSkillProductDirective, buildCancelInSkillProductDirective, buildUpsellInSkillProductDirective, daysBetween, deepClone, diceCheck, diceRoll, escapeSpeech, fetchEntitlements, getProductByProductId, getProductByReferenceName, getReferenceNameByProductId, hexFromRGB, hoursBetween, inSkillProductBought, interpolateRGB, isActuallyANumber, minutesBetween, pickSayFragment, pickSayString, randomArrayItem, randomIndex, reportValueMetric, rgbFromHSL, rgbFromHex, shuffleArray,
   indexOf = [].indexOf;
 
 randomIndex = function(count) {
@@ -84,7 +84,7 @@ pickSayString = function(context, key, count) {
       } else {
         value = randomIndex(2);
       }
-      history[0] = value;
+      history[0] = value % 2;
       break;
     case !(count < 5):
       // until 4, the pattern below is a little
@@ -96,7 +96,7 @@ pickSayString = function(context, key, count) {
       if (value === history[0]) {
         value = (value + 1) % count;
       }
-      history[0] = value;
+      history[0] = value % 5;
       break;
     default:
       // otherwise, guarantee we'll see at least
@@ -116,7 +116,13 @@ pickSayString = function(context, key, count) {
   }
   sayData[key] = history;
   context.db.write('__sayHistory', sayData);
-  return value;
+  return value % count;
+};
+
+pickSayFragment = function(context, key, options) {
+  var index;
+  index = pickSayString(context, key, options.length);
+  return options[index];
 };
 
 exports.DataTablePrototype = {

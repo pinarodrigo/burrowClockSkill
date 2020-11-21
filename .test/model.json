@@ -1,0 +1,49 @@
+{
+  "languageModel": {
+    "invocationName": "burrowclockskill",
+    "intents": [
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StartOverIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.YesIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NoIntent",
+        "samples": []
+      },
+      {
+        "name": "FIND_NAME",
+        "samples": [
+          "find {name}",
+          "locate {name}",
+          "where is {name}",
+          "{name}"
+        ],
+        "slots": [
+          {
+            "name": "name",
+            "type": "AMAZON.FirstName"
+          }
+        ]
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NavigateHomeIntent"
+      }
+    ]
+  }
+}

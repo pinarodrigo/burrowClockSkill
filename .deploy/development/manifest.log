@@ -1,13 +1,580 @@
-[manifest] +1ms beginning manifest deployment
-[manifest] +582ms ask-cli version 2.15.0
+[manifest] +0ms beginning manifest deployment
+[manifest] +665ms ask-cli version 2.20.0
 [manifest] +0ms loading skill.json
 [manifest] +1ms building skill manifest
-[manifest] +3ms skillId found in artifacts, getting information
-[manifest] +4146ms deployed skill manifest matches local
+[manifest] +4ms skillId found in artifacts, getting information
+[smapi] +0ms ask smapi get-skill-manifest --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --stage development
+[smapi] +4408ms SMAPI get-skill-manifest stdout: {
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+        },
+        "interfaces": [],
+        "regions": {
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:540845252871:function:burrowClockSkill_development_litexa_handler:release-0"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "containsAds": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://www.example.com/privacy.html",
+          "termsOfUseUrl": "https://www.example.com/terms.html"
+        },
+        "es-MX": {
+          "privacyPolicyUrl": "https://www.example.com/es-MX/privacy.html",
+          "termsOfUseUrl": "https://www.example.com/es-MX/terms.html"
+        }
+      },
+      "usesPersonalInfo": false
+    },
+    "publishingInformation": {
+      "category": "GAMES",
+      "distributionCountries": [
+        "MX",
+        "DE"
+      ],
+      "distributionMode": "PUBLIC",
+      "isAvailableWorldwide": false,
+      "locales": {
+        "en-US": {
+          "description": "This skill allows you to locate family members using the owntracks app to push their location information",
+          "examplePhrases": [
+            "Alexa, family locator",
+            "Alexa, open family locator"
+          ],
+          "keywords": [
+            "game",
+            "fun"
+          ],
+          "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png",
+          "name": "Burrow Clock Skill (development)",
+          "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+          "summary": "Skill to locate family members"
+        },
+        "es-MX": {
+          "description": "Skill para localizar a miembros de la familia que usen el apps de Owntracks para subir su posición geográfica",
+          "examplePhrases": [
+            "Alexa, localiza familia"
+          ],
+          "keywords": [
+            "juegos",
+            "diversión"
+          ],
+          "largeIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-512.png",
+          "name": "Burrow Clock Skill (development)",
+          "smallIconUri": "https://s3.amazonaws.com/litexa-skills/burrowClockSkill/development/default/icon-108.png",
+          "summary": "Skill para localizar a los Piña"
+        }
+      },
+      "testingInstructions": "replace with testing instructions"
+    }
+  }
+}
+
+[smapi] +1ms SMAPI stderr: 
+[manifest] +4409ms skill is in null state
+[manifest] +0ms deployed skill manifest matches local
 [manifest] +0ms skill manifest up to date
-[manifest] +3953ms en-US model up to date
+[smapi] +0ms ask smapi get-interaction-model --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --locale en-US --stage development
+[smapi] +0ms ask smapi get-interaction-model --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --locale es-MX --stage development
+[smapi] +4157ms SMAPI get-interaction-model stdout: {
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "family locator",
+      "intents": [
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "FIND_NAME",
+          "slots": [
+            {
+              "name": "name",
+              "type": "AMAZON.FirstName"
+            }
+          ],
+          "samples": [
+            "find {name}",
+            "locate {name}",
+            "where is {name}",
+            "{name}"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent"
+        }
+      ]
+    }
+  },
+  "version": "11"
+}
+
+[smapi] +1ms SMAPI stderr: 
+[manifest] +4160ms en-US model up to date
 [manifest] +0ms en-US model is up to date
-[manifest] +123ms es-MX model up to date
-[manifest] +0ms es-MX model is up to date
+[smapi] +4399ms SMAPI get-interaction-model stdout: {
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "localiza familia",
+      "intents": [
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "A_ANOTHERNAME",
+          "slots": [
+            {
+              "name": "anotherName",
+              "type": "AMAZON.FirstName"
+            }
+          ],
+          "samples": [
+            "a {anotherName}",
+            "encuentra a {anotherName}"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "socorro"
+          ]
+        },
+        {
+          "name": "FIND_NAME",
+          "slots": [
+            {
+              "name": "name",
+              "type": "AMAZON.FirstName"
+            }
+          ],
+          "samples": [
+            "find {name}",
+            "locate {name}",
+            "where is {name}",
+            "{name}"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "32"
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +243ms {"invocationName":"localiza familia","intents":[{"name":"AMAZON.StopIntent","samples":[]},{"name":"AMAZON.CancelIntent","samples":[]},{"name":"AMAZON.StartOverIntent","samples":[]},{"name":"AMAZON.YesIntent","samples":[]},{"name":"AMAZON.NoIntent","samples":[]},{"name":"A_ANOTHERNAME","samples":["a {anotherName}","encuentra a {anotherName}"],"slots":[{"name":"anotherName","type":"AMAZON.FirstName"}]},{"name":"AMAZON.HelpIntent","samples":[]},{"name":"FIND_NAME","samples":["find {name}","locate {name}","where is {name}","{name}"],"slots":[{"name":"name","type":"AMAZON.FirstName"}]},{"name":"AMAZON.NavigateHomeIntent"}]} NOT EQUAL TO {"invocationName":"localiza familia","intents":[{"name":"AMAZON.StopIntent","samples":[]},{"name":"AMAZON.CancelIntent","samples":[]},{"name":"AMAZON.StartOverIntent","samples":[]},{"name":"AMAZON.YesIntent","samples":[]},{"name":"AMAZON.NoIntent","samples":[]},{"name":"A_ANOTHERNAME","slots":[{"name":"anotherName","type":"AMAZON.FirstName"}],"samples":["a {anotherName}","encuentra a {anotherName}"]},{"name":"AMAZON.HelpIntent","samples":["socorro"]},{"name":"FIND_NAME","slots":[{"name":"name","type":"AMAZON.FirstName"}],"samples":["find {name}","locate {name}","where is {name}","{name}"]},{"name":"AMAZON.NavigateHomeIntent","samples":[]}],"types":[]}
+[manifest] +0ms es-MX model mismatch
+[manifest] +0ms es-MX model update beginning
+[smapi] +1ms ask smapi set-interaction-model --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --locale es-MX --interaction-model file:/Users/rpn8fe/playground/burrowClockSkill/.deploy/development/model-es-MX.json --stage development
+[smapi] +4951ms SMAPI set-interaction-model stdout: Command executed successfully!
+
+[smapi] +0ms SMAPI stderr: [Warn]: This is an asynchronous operation. Check the progress using the following command: ask smapi get-skill-status --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --resource interactionModel --profile pinanet
+
+[manifest] +4952ms waiting for model es-MX status after update-model
+[smapi] +1ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4769ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +5772ms waiting for model es-MX status after update-model
+[smapi] +0ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4471ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "IN_PROGRESS"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "IN_PROGRESS"
+            }
+          ]
+        },
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +5473ms waiting for model es-MX status after update-model
+[smapi] +0ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4316ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "IN_PROGRESS"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "IN_PROGRESS"
+            }
+          ]
+        },
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +5317ms waiting for model es-MX status after update-model
+[smapi] +0ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4458ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "IN_PROGRESS"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "IN_PROGRESS"
+            }
+          ]
+        },
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +5459ms waiting for model es-MX status after update-model
+[smapi] +1ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4663ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "IN_PROGRESS"
+            }
+          ]
+        },
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +5665ms waiting for model es-MX status after update-model
+[smapi] +0ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4368ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "83c181444d243e7834736a048a6cfb82",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "IN_PROGRESS"
+            }
+          ]
+        },
+        "status": "IN_PROGRESS"
+      }
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +1ms SMAPI stderr: 
+[manifest] +5369ms waiting for model es-MX status after update-model
+[smapi] +0ms ask smapi get-skill-status --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002
+[smapi] +4524ms SMAPI get-skill-status stdout: {
+  "interactionModel": {
+    "en-US": {
+      "eTag": "d83c50e8791bea87dfabf872fca967dd",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "11"
+    },
+    "es-MX": {
+      "eTag": "fce8626433d86cd1c7a4564244652a56",
+      "lastUpdateRequest": {
+        "buildDetails": {
+          "steps": [
+            {
+              "name": "LANGUAGE_MODEL_QUICK_BUILD",
+              "status": "SUCCEEDED"
+            },
+            {
+              "name": "LANGUAGE_MODEL_FULL_BUILD",
+              "status": "SUCCEEDED"
+            }
+          ]
+        },
+        "status": "SUCCEEDED"
+      },
+      "version": "33"
+    }
+  },
+  "manifest": {
+    "eTag": "d5617c43e2c6788e0a2e0448e3bb1957",
+    "lastUpdateRequest": {
+      "status": "SUCCEEDED"
+    }
+  }
+}
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +4524ms model update-model succeeded
+[manifest] +1ms es-MX model update complete, total time 46932ms
 [manifest] +0ms ensuring skill is enabled for testing
-[manifest] +3910ms manifest deployment complete, 12719ms
+[smapi] +0ms ask smapi set-skill-enablement --profile pinanet --skill-id amzn1.ask.skill.e8f820d4-83fc-4e0e-bdfd-82796a363002 --stage development
+[smapi] +4303ms SMAPI set-skill-enablement stdout: Command executed successfully!
+
+[smapi] +0ms SMAPI stderr: 
+[manifest] +4303ms manifest deployment complete, 56317ms
